@@ -1,10 +1,26 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+import URI from "urijs";
+import swagger from "swagger-client";
+import ptvApi from "ptv-api";
+
+const devid = "3002174";
+const apikey = "24030e89-d965-465f-8c63-f2e8072a3e89";
+// ptvClient = ptvapi(devid, apikey);
+// ptvClient
+//   .then((apis) => {
+//     return apis.Routes.Routes_RouteFromId({ route_id: 8960 });
+//   })
+//   .then((res) => {
+//     console.log(res.body);
+//   })
+//   .catch(console.error);
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <App />
