@@ -1,4 +1,4 @@
-import { DISRUPTIONS_ACTION_TYPES } from "./disruptions-types";
+import { DISRUPTIONS_ACTION_TYPES } from "./disruptions.types";
 
 export const DISRUPTIONS_INITIAL_STATE = {
   disruptions: [],

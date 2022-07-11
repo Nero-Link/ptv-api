@@ -15,7 +15,7 @@ const createSignature = (path, key) => {
   return CryptoJS.HmacSHA1(path, key).toString().toUpperCase();
 };
 
-const ptvapi = async (devid, apikey) => {
+export const ptvApi = async (devid, apikey) => {
   return swagger({
     url: "https://timetableapi.ptv.vic.gov.au/v3/",
     spec: require("./ptv-openapi.json"),
@@ -126,4 +126,4 @@ export const setNext = (id, disruption) => {
   });
 };
 
-export const ptvClient = ptvapi(apiConfig.devid, apiConfig.apikey);
+export const ptvClient = ptvApi(apiConfig.devid, apiConfig.apikey);

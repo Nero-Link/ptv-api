@@ -1,5 +1,5 @@
 import { createAction } from "../../utils/reducer.utils";
-import { ROUTES_ACTION_TYPES } from "./routes-types";
+import { ROUTES_ACTION_TYPES } from "./routes.types";
 
 export const fetchRoutesStart = () =>
   createAction(ROUTES_ACTION_TYPES.FETCH_ROUTES_START);

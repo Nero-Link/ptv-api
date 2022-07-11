@@ -1,5 +1,5 @@
 import { createAction } from "../../utils/reducer.utils";
-import { DISRUPTIONS_ACTION_TYPES } from "./disruptions-types";
+import { DISRUPTIONS_ACTION_TYPES } from "./disruptions.types";
 
 export const fetchDisruptionsStart = () =>
   createAction(DISRUPTIONS_ACTION_TYPES.FETCH_DISRUPTIONS_START);

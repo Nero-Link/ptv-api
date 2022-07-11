@@ -7,7 +7,7 @@ import swagger from "swagger-client";
 import * as CryptoJS from "crypto-js";
 
 import { createAction } from "./utils/reducer.utils";
-import { fetchPTVInfoStart } from "./sagas/routes/routes-action";
+import { fetchPTVInfoStart } from "./sagas/routes/routes.action";
 
 import logo from "./logo.svg";
 import "./App.css";

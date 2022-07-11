@@ -1,10 +1,10 @@
 import { takeLatest, all, call, put } from "redux-saga/effects";
-import { DEPARTURES_ACTION_TYPES } from "./departures-types";
+import { DEPARTURES_ACTION_TYPES } from "./departures.types";
 import {
   fetchDeparturesSuccess,
   fetchDeparturesFailed,
-} from "./departures-action";
-import ptvApi from "../../utils/api.utils";
+} from "./departures.action";
+import { ptvApi } from "../../utils/api.utils";
 
 export function* fetchDeparturesAsync() {
   try {
@@ -22,6 +22,6 @@ export function* onFetchData() {
   );
 }
 
-export function* DeparturesSaga() {
+export function* departuresSaga() {
   yield all([call(onFetchData)]);
 }

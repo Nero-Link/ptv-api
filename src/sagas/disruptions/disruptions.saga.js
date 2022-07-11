@@ -1,10 +1,10 @@
 import { takeLatest, all, call, put } from "redux-saga/effects";
-import { DISRUPTIONS_ACTION_TYPES } from "./disruptions-types";
+import { DISRUPTIONS_ACTION_TYPES } from "./disruptions.types";
 import {
   fetchDisruptionsSuccess,
   fetchDisruptionsFailed,
-} from "./disruptions-action";
-import ptvApi from "../../utils/api.utils";
+} from "./disruptions.action";
+import { ptvApi } from "../../utils/api.utils";
 
 export function* fetchDisruptionsAsync() {
   try {
@@ -22,6 +22,6 @@ export function* onFetchData() {
   );
 }
 
-export function* DisruptionsSaga() {
+export function* disruptionsSaga() {
   yield all([call(onFetchData)]);
 }

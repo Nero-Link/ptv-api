@@ -1,4 +1,4 @@
-import { DEPARTURES_ACTION_TYPES } from "./departures-types";
+import { DEPARTURES_ACTION_TYPES } from "./departures.types";
 
 export const DEPARTURES_INITIAL_STATE = {
   departures: [],

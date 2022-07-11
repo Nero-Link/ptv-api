@@ -1,7 +1,7 @@
 import { takeLatest, all, call, put } from "redux-saga/effects";
 import { ROUTES_ACTION_TYPES } from "./routes.types";
-import { fetchRoutesSuccess, fetchRoutesFailed } from "./routes-action";
-import ptvApi from "../../utils/api.utils";
+import { fetchRoutesSuccess, fetchRoutesFailed } from "./routes.action";
+import { ptvApi } from "../../utils/api.utils";
 
 export function* fetchRoutesAsync() {
   try {
@@ -16,6 +16,6 @@ export function* onFetchData() {
   yield takeLatest(ROUTES_ACTION_TYPES.fetchRoutesStart, fetchRoutesAsync);
 }
 
-export function* RoutesSaga() {
+export function* routesSaga() {
   yield all([call(onFetchData)]);
 }
