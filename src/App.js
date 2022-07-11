@@ -1,12 +1,24 @@
-// import { useDispatch } from "react";
-import logo from "./logo.svg";
-import "./App.css";
+import { Routes, Route } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
 
 import URI from "urijs";
 import swagger from "swagger-client";
 import * as CryptoJS from "crypto-js";
 
+import { createAction } from "./utils/reducer.utils";
+import { fetchPTVInfoStart } from "./sagas/routes/routes-action";
+
+import logo from "./logo.svg";
+import "./App.css";
+
 const App = () => {
+  // const dispatch = useDispatch();
+
+  // useEffect(() => {
+  //   dispatch(fetchPTVInfoStart());
+  // }, [dispatch]);
+
   function createSignature(path, key) {
     return CryptoJS.HmacSHA1(path, key).toString().toUpperCase();
   }
@@ -14,7 +26,7 @@ const App = () => {
   function ptvapi(devid, apikey) {
     return swagger({
       url: "https://timetableapi.ptv.vic.gov.au/v3/",
-      spec: require("./ptv-openapi.json"),
+      spec: require("./utils/ptv-openapi.json"),
       requestInterceptor: function (req) {
         let url = URI(req.url).addQuery({ devid: devid });
         let signature = createSignature(
