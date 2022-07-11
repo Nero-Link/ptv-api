@@ -17,7 +17,7 @@ export function* fetchDeparturesAsync() {
 
 export function* onFetchData() {
   yield takeLatest(
-    DEPARTURES_ACTION_TYPES.fetchDeparturesStart,
+    DEPARTURES_ACTION_TYPES.FETCH_DEPARTURES_START,
     fetchDeparturesAsync
   );
 }

@@ -2,7 +2,7 @@ import URI from "urijs";
 import swagger from "swagger-client";
 import * as CryptoJS from "crypto-js";
 
-let route = "";
+// let route = "";
 let service = "";
 let departures = [];
 
@@ -28,25 +28,9 @@ export const ptvApi = async (devid, apikey) => {
       req.url = url.addQuery({ signature: signature }).toString();
       return req;
     },
-  }).then((client) => client.apis);
-};
-
-export const getRoute = async () => {
-  try {
-    await ptvClient
-      .then((apis) => {
-        return apis.Routes.Routes_RouteFromId({ route_id: 3 });
-      })
-      .then((res) => {
-        route = res.body.route.route_name;
-        service = res.body.route.route_service_status.description;
-        console.log(route);
-        console.log(service);
-        getDepartures();
-      });
-  } catch (error) {
-    console.log(error);
-  }
+  })
+    .then((client) => client.apis)
+    .then(console.log("Connected to PTV API!"));
 };
 
 export const getDepartures = async () => {

@@ -17,7 +17,7 @@ export function* fetchDisruptionsAsync() {
 
 export function* onFetchData() {
   yield takeLatest(
-    DISRUPTIONS_ACTION_TYPES.fetchDisruptionsStart,
+    DISRUPTIONS_ACTION_TYPES.FETCH_DISRUPTIONS_START,
     fetchDisruptionsAsync
   );
 }

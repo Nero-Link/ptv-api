@@ -7,17 +7,19 @@ import swagger from "swagger-client";
 import * as CryptoJS from "crypto-js";
 
 import { createAction } from "./utils/reducer.utils";
-import { fetchPTVInfoStart } from "./sagas/routes/routes.action";
+import { fetchRoutesStart } from "./sagas/routes/routes.action";
 
 import logo from "./logo.svg";
 import "./App.css";
 
-const App = () => {
-  // const dispatch = useDispatch();
+export let route = [1, 2, 3];
 
-  // useEffect(() => {
-  //   dispatch(fetchPTVInfoStart());
-  // }, [dispatch]);
+const App = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchRoutesStart());
+  }, [dispatch]);
 
   function createSignature(path, key) {
     return CryptoJS.HmacSHA1(path, key).toString().toUpperCase();
@@ -61,7 +63,7 @@ const App = () => {
     service = "";
     departures = [];
     timer = 0;
-    getRoute();
+    // getRoute();
   }
 
   const getRoute = async () => {
