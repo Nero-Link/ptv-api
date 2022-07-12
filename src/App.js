@@ -8,7 +8,10 @@ import * as CryptoJS from "crypto-js";
 
 import { createAction } from "./utils/reducer.utils";
 import { fetchRoutesStart } from "./sagas/routes/routes.action";
+import { fetchDeparturesStart } from "./sagas/departures/departures.action";
+import { fetchDisruptionsStart } from "./sagas/disruptions/disruptions.action";
 import Departures from "./components/departures/departures.component";
+import { store } from "./sagas/store";
 
 import logo from "./logo.svg";
 import "./App.css";
@@ -20,6 +23,7 @@ const App = () => {
 
   useEffect(() => {
     dispatch(fetchRoutesStart());
+    dispatch(fetchDeparturesStart());
   }, [dispatch]);
 
   let route = "";
@@ -59,7 +63,7 @@ const App = () => {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <Departures />
+        {/* <Departures /> */}
         <p>
           {route}: {service} {timer}
         </p>

@@ -11,7 +11,6 @@ export function* fetchRoutesAsync() {
   try {
     const routeArray = yield call(getRoutes, { route });
     yield put(fetchRoutesSuccess(routeArray));
-    console.log(routeArray);
   } catch (error) {
     yield put(fetchRoutesFailed(error));
   }

@@ -3,12 +3,13 @@ import { DEPARTURES_ACTION_TYPES } from "./departures.types";
 import {
   fetchDeparturesSuccess,
   fetchDeparturesFailed,
+  getDepartures,
 } from "./departures.action";
-import { ptvApi } from "../../utils/api.utils";
+import { route } from "../../App";
 
 export function* fetchDeparturesAsync() {
   try {
-    const departureArray = yield call(ptvApi, "departures");
+    const departureArray = yield call(getDepartures, { route });
     yield put(fetchDeparturesSuccess(departureArray));
   } catch (error) {
     yield put(fetchDeparturesFailed(error));
