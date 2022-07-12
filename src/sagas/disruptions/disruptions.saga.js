@@ -15,7 +15,7 @@ export function* fetchDisruptionsAsync() {
   }
 }
 
-export function* onFetchData() {
+export function* onFetchDisruptions() {
   yield takeLatest(
     DISRUPTIONS_ACTION_TYPES.FETCH_DISRUPTIONS_START,
     fetchDisruptionsAsync
@@ -23,5 +23,5 @@ export function* onFetchData() {
 }
 
 export function* disruptionsSaga() {
-  yield all([call(onFetchData)]);
+  yield all([call(onFetchDisruptions)]);
 }

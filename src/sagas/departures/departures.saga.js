@@ -15,7 +15,7 @@ export function* fetchDeparturesAsync() {
   }
 }
 
-export function* onFetchData() {
+export function* onFetchDepartures() {
   yield takeLatest(
     DEPARTURES_ACTION_TYPES.FETCH_DEPARTURES_START,
     fetchDeparturesAsync
@@ -23,5 +23,5 @@ export function* onFetchData() {
 }
 
 export function* departuresSaga() {
-  yield all([call(onFetchData)]);
+  yield all([call(onFetchDepartures)]);
 }

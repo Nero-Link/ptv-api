@@ -9,8 +9,8 @@ export const selectRoutes = createSelector(
 
 export const selectRoutesMap = createSelector([selectRoutes], (routes) =>
   routes.reduce((acc, route) => {
-    const { title, items } = route;
-    acc[title.toLowerCase()] = items;
+    const { title, service } = route;
+    acc[title.toLowerCase()] = service;
     return acc;
   }, {})
 );
