@@ -1,7 +1,6 @@
 import { createAction } from "../../utils/reducer.utils";
 import { DEPARTURES_ACTION_TYPES } from "./departures.types";
 import { ptvClient } from "../../utils/api.utils";
-import { store } from "../store";
 
 export const fetchDeparturesStart = () =>
   createAction(DEPARTURES_ACTION_TYPES.FETCH_DEPARTURES_START);

@@ -7,13 +7,38 @@ import {
   selectRoutesMap,
   selectRoutesIsLoading,
 } from "../../sagas/routes/routes.selector";
+import {
+  selectDeparturesMap,
+  selectDeparturesIsLoading,
+} from "../../sagas/departures/departures.selector";
 import { route } from "../../App";
+import { store } from "../../sagas/store";
 
 const Departures = () => {
-  // const { route } = useParams();
   const routesMap = useSelector(selectRoutesMap);
   const isLoading = useSelector(selectRoutesIsLoading);
   const [routes, setRoutes] = useState(routesMap[route]);
+  let newObject = [];
+
+  const objectLoop = (route, routeIndex, data, index) => {
+    if (newObject.length === 0) newObject = Object.entries(routesMap);
+    let finalRoute = "";
+    let outerLoop = () => {
+      if (routeIndex === 0 && index === 1) {
+        let innerLoop = () => {
+          for (let i = 0; i < data.length; i++) {
+            console.log(data[i]);
+            return data[i];
+          }
+          return innerLoop;
+        };
+        return outerLoop;
+      }
+    };
+    finalRoute = route;
+
+    return <Routes key={outerLoop} route={finalRoute} />;
+  };
 
   useEffect(() => {
     setRoutes(routesMap[route]);
@@ -26,8 +51,17 @@ const Departures = () => {
         <Spinner />
       ) : (
         <div className="departure-container">
-          {routes &&
-            routes.map((route) => <Routes key={route.id} route={route} />)}
+          {objectLoop(routesMap)}
+          {newObject.length > 0 && console.log(newObject)}
+          {/* {newObject.length > 0 &&
+            newObject.map((route, routeIndex) => {
+              route.forEach((data, index) => {
+                <Routes
+                  key={objectLoop(route, routeIndex, data, index)}
+                  route={objectLoop(route, routeIndex, data, index)}
+                />;
+              });
+            })} */}
         </div>
       )}
     </div>

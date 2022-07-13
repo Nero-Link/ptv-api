@@ -29,41 +29,65 @@ const App = () => {
   let route = "";
   let service = "";
   let departures = [];
-  let timer = 0;
-  let timeout = 30000;
+  // let timer = 0;
+  let timeout = 10000;
 
-  function setTime() {
-    timeout = document.getElementById("timeout").value * 1000;
-    timer = 0;
-    console.log(timeout);
-    // timerReset();
-  }
+  // function setTime() {
+  //   timeout = document.getElementById("timeout").value * 1000;
+  //   timer = 0;
+  //   console.log(timeout);
+  //   // timerReset();
+  // }
 
-  function reset() {
-    route = "";
-    service = "";
-    departures = [];
-    timer = 0;
-    // getRoute();
-  }
+  // function reset() {
+  //   route = "";
+  //   service = "";
+  //   departures = [];
+  //   timer = 0;
+  //   // getRoute();
+  // }
 
   // const increaseCounter = useCallback(() => dispatch({ type: 'increase-counter' }), [])
-  reset();
+  // reset();
+  let [timer, setTimer] = useState(0);
 
-  // setInterval(function () {
-  //   timer++;
-  //   console.log(timer);
-  // }, 1000);
+  function countdown() {
+    setInterval(function () {
+      setTimer(timer + 1);
+      console.log(timer);
+    }, timeout);
+  }
+
+  function clearTimer(newTime) {
+    timeout = newTime;
+    timer = 0;
+    clearInterval(countdown);
+    console.log(timeout);
+    countdown();
+  }
+
+  // countdown();
 
   // setInterval(function () {
   //   reset();
   // }, timeout);
 
+  useEffect(() => {
+    document.title = `You refreshed ${timer} times`;
+  });
+
+  // store.subscribe(() => {
+  //   console.log("state\n", store.getState());
+  //   // debugger;
+  // });
+
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        {/* <Departures /> */}
+        <Departures />
+        <p>You clicked {timer} times</p>
+        <button onClick={() => setTimer(timer + 1)}>Refresh</button>
         <p>
           {route}: {service} {timer}
         </p>
@@ -73,15 +97,17 @@ const App = () => {
           })}
         </p>
         <select
-          onChange={(e) => setTime(e.target.value)}
-          defaultValue={3}
+          onChange={(e) => {
+            clearTimer(e.target.value);
+          }}
+          defaultValue={3000}
           id="timeout"
         >
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
+          <option value="1000">1</option>
+          <option value="2000">2</option>
+          <option value="3000">3</option>
+          <option value="4000">4</option>
+          <option value="5000">5</option>
         </select>
         <a
           className="App-link"

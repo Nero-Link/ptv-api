@@ -3,12 +3,13 @@ import { DISRUPTIONS_ACTION_TYPES } from "./disruptions.types";
 import {
   fetchDisruptionsSuccess,
   fetchDisruptionsFailed,
+  getDisruptions,
 } from "./disruptions.action";
-import { ptvApi } from "../../utils/api.utils";
+import { route } from "../../App";
 
 export function* fetchDisruptionsAsync() {
   try {
-    const departureArray = yield call(ptvApi, "disruptions");
+    const departureArray = yield call(getDisruptions, { route });
     yield put(fetchDisruptionsSuccess(departureArray));
   } catch (error) {
     yield put(fetchDisruptionsFailed(error));

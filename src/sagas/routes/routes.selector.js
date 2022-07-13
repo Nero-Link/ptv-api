@@ -4,15 +4,12 @@ const selectRoutesReducer = (state) => state.routes;
 
 export const selectRoutes = createSelector(
   [selectRoutesReducer],
-  (routesSlice) => routesSlice.routes
+  (route) => route.routes
 );
 
-export const selectRoutesMap = createSelector([selectRoutes], (routes) =>
-  routes.reduce((acc, route) => {
-    const { title, service } = route;
-    acc[title.toLowerCase()] = service;
-    return acc;
-  }, {})
+export const selectRoutesMap = createSelector(
+  [selectRoutes],
+  (routes) => routes
 );
 
 export const selectRoutesIsLoading = createSelector(

@@ -1,7 +1,6 @@
 import { createAction } from "../../utils/reducer.utils";
 import { ROUTES_ACTION_TYPES } from "./routes.types";
 import { ptvClient } from "../../utils/api.utils";
-import { store } from "../store";
 
 export const fetchRoutesStart = () =>
   createAction(ROUTES_ACTION_TYPES.FETCH_ROUTES_START);
@@ -25,26 +24,6 @@ export const getRoutes = async (route) => {
       })
       .then((res) => {
         let service = res.body.route.route_service_status.description;
-        let emoji = "🟢";
-        if (service === "Good Service") {
-          emoji = "🟢";
-        } else if (service === "Minor Delays") {
-          emoji = "🟡";
-        } else if (service === "Major Delays") {
-          emoji = "🔴";
-        } else if (service === "Planned Works") {
-          emoji = "🟠";
-        }
-        console.log(
-          "Routes: " +
-            res.body.route.route_name +
-            " - " +
-            emoji +
-            " " +
-            service +
-            " " +
-            emoji
-        );
         routes.id.push(currRoute);
         routes.name.push(res.body.route.route_name);
         routes.service.push(res.body.route.route_service_status.description);
