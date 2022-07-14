@@ -4,17 +4,12 @@ const selectDeparturesReducer = (state) => state.departures;
 
 export const selectDepartures = createSelector(
   [selectDeparturesReducer],
-  (departuresSlice) => departuresSlice.departures
+  (departures) => departures.departures
 );
 
 export const selectDeparturesMap = createSelector(
   [selectDepartures],
-  (departures) =>
-    departures.reduce((acc, departure) => {
-      const { title, items } = departure;
-      acc[title.toLowerCase()] = items;
-      return acc;
-    }, {})
+  (departures) => departures
 );
 
 export const selectDeparturesIsLoading = createSelector(

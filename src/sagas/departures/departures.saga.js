@@ -12,7 +12,6 @@ export function* fetchDeparturesAsync() {
   try {
     const departureArray = yield call(getDepartures, { route });
     yield put(fetchDeparturesSuccess(departureArray));
-    console.log(store.getState());
   } catch (error) {
     yield put(fetchDeparturesFailed(error));
   }

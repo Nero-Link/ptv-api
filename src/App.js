@@ -26,9 +26,6 @@ const App = () => {
     dispatch(fetchDeparturesStart());
   }, [dispatch]);
 
-  let route = "";
-  let service = "";
-  let departures = [];
   // let timer = 0;
   let timeout = 10000;
 
@@ -86,14 +83,7 @@ const App = () => {
       <header className="App-header">
         <TrainRoutes />
         <button onClick={() => setTimer(timer + 1)}>Refresh</button>
-        <p>
-          {route}: {service} {timer}
-        </p>
-        <p>
-          {departures.map((departure) => {
-            return departures;
-          })}
-        </p>
+        <p>Refreshed: {timer}</p>
         <select
           onChange={(e) => {
             clearTimer(e.target.value);

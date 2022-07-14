@@ -1,7 +1,7 @@
 import { React, useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import Departures from "../departures/departures.component";
 import Spinner from "../spinner/spinner.component";
+import Departures from "../departures/departures.component";
 import {
   selectRoutesMap,
   selectRoutesIsLoading,
@@ -12,10 +12,10 @@ const TrainRoutes = () => {
   const routesMap = useSelector(selectRoutesMap);
   const isLoading = useSelector(selectRoutesIsLoading);
   const [routes, setRoutes] = useState(routesMap[route]);
-  let newObject = [];
+  let routesArray = [];
 
   const objectLoop = () => {
-    if (newObject.length === 0) newObject = Object.entries(routesMap);
+    if (routesArray.length === 0) routesArray = Object.entries(routesMap);
     return;
   };
 
@@ -25,15 +25,14 @@ const TrainRoutes = () => {
 
   return (
     <div>
-      <h2 className="route-title">{route}</h2>
+      <h2 className="route-title">Southern Cross Train Departures</h2>
       {isLoading ? (
         <Spinner />
       ) : (
-        <div className="departure-container">
+        <div className="routes-container">
           {objectLoop(routesMap)}
-          {newObject.length > 0 && console.log(newObject)}
-          {newObject.length > 0 &&
-            newObject.map((route) => {
+          {routesArray.length > 0 &&
+            routesArray.map((route) => {
               return <Departures key={route[1].id} route={route[1]} />;
             })}
         </div>
