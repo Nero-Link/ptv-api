@@ -14,5 +14,5 @@ export const selectRoutesMap = createSelector(
 
 export const selectRoutesIsLoading = createSelector(
   [selectRoutesReducer],
-  (routesSlice) => routesSlice.isLoading
+  (routes) => routes.isLoading
 );

@@ -9,15 +9,15 @@ import * as CryptoJS from "crypto-js";
 import { createAction } from "./utils/reducer.utils";
 import { fetchRoutesStart } from "./sagas/routes/routes.action";
 import { fetchDeparturesStart } from "./sagas/departures/departures.action";
-import { fetchDisruptionsStart } from "./sagas/disruptions/disruptions.action";
 import TrainRoutes from "./components/routes/train-routes.component";
 import { store } from "./sagas/store";
 
 import logo from "./logo.svg";
 import "./App.css";
 
-export let route = [1, 2, 3];
-
+export let route = [1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 14, 15, 16, 17];
+export let timer = 0;
+let setTimer;
 const App = () => {
   const dispatch = useDispatch();
 
@@ -46,7 +46,7 @@ const App = () => {
 
   // const increaseCounter = useCallback(() => dispatch({ type: 'increase-counter' }), [])
   // reset();
-  let [timer, setTimer] = useState(0);
+  [timer, setTimer] = useState(0);
 
   function countdown() {
     setInterval(function () {

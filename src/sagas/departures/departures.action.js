@@ -11,6 +11,17 @@ export const fetchDeparturesSuccess = (departures) =>
 export const fetchDeparturesFailed = (error) =>
   createAction(DEPARTURES_ACTION_TYPES.FETCH_DEPARTURES_FAILED, error);
 
+const timeConvert = (departTime) => {
+  let suffix = "AM";
+  let hour = String(new Date(departTime).getHours()).padStart(2, "0");
+  let minute = String(new Date(departTime).getMinutes()).padStart(2, "0");
+  if (hour > 12) {
+    suffix = "PM";
+    hour = String(new Date(departTime).getHours() - 12).padStart(2, "0");
+  }
+  return hour + ":" + minute + suffix;
+};
+
 export const getDepartures = async (route) => {
   let departures = [];
   await route.route.forEach((currRoute) => {
@@ -40,7 +51,8 @@ export const getDepartures = async (route) => {
                 route_id: currRoute,
                 departures: {
                   count: counter,
-                  time: new Date(departTime).toLocaleString(),
+                  time: timeConvert(departTime),
+                  fullTime: new Date(departTime).toLocaleString(),
                   platform: departure.platform_number,
                   disruptions: {
                     id: departure.disruption_ids,

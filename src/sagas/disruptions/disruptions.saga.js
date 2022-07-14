@@ -5,11 +5,12 @@ import {
   fetchDisruptionsFailed,
   getDisruptions,
 } from "./disruptions.action";
-import { route } from "../../App";
+import { departuresMap } from "../../components/departures/departures.component";
 
 export function* fetchDisruptionsAsync() {
   try {
-    const departureArray = yield call(getDisruptions, { route });
+    const departureArray = yield call(getDisruptions, { departuresMap });
+    console.log(departuresMap.departures.disruptions);
     yield put(fetchDisruptionsSuccess(departureArray));
   } catch (error) {
     yield put(fetchDisruptionsFailed(error));

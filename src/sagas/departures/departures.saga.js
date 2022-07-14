@@ -6,7 +6,6 @@ import {
   getDepartures,
 } from "./departures.action";
 import { route } from "../../App";
-import { store } from "../store";
 
 export function* fetchDeparturesAsync() {
   try {
