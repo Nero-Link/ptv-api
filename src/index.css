@@ -1,13 +1,87 @@
+@font-face {
+  font-family: "Network Sans Regular";
+  src: local("Network Sans Regular"),
+    url(./fonts/NETWORKSANS-2019-REGULAR.TTF) format("truetype");
+}
+@font-face {
+  font-family: "Network Sans Medium";
+  src: local("Network Sans Medium"),
+    url(./fonts/NETWORKSANS-2019-MEDIUM.TTF) format("truetype");
+}
+@font-face {
+  font-family: "Network Sans Light";
+  src: local("Network Sans Light"),
+    url(./fonts/NETWORKSANS-2019-LIGHT.TTF) format("truetype");
+}
+@font-face {
+  font-family: "Network Sans Bold";
+  src: local("Network Sans Bold"),
+    url(./fonts/NETWORKSANS-2019-BOLD.TTF) format("truetype");
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: "Network Sans Regular", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+    "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+.route-container {
+  background: #0072ce;
+  height: 100px;
+  border-radius: 50px;
+  align-items: center;
+  display: flex;
+  color: white;
+  font-family: "Network Sans Bold";
+  margin: 20px;
+  padding: 0px 20px;
+  width: 1500px;
+}
+
+.name,
+.service,
+.departing,
+.platform {
+  border-right: 3px solid white;
+  padding: 0px 20px;
+  height: 100%;
+}
+
+.name,
+.departing {
+  line-height: 100px;
+  font-size: 3rem;
+}
+
+.name {
+  width: 25%;
+  text-align: left;
+}
+
+.departing,
+.platform {
+  width: 15%;
+}
+
+.platform {
+  font-size: 1rem;
+  height: 150px;
+}
+
+.number {
+  font-size: 3rem;
+}
+
+.disruptions {
+  font-size: 1.5rem;
+  padding: 0px 20px;
+  width: 45%;
 }

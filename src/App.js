@@ -84,9 +84,7 @@ const App = () => {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
         <Departures />
-        <p>You clicked {timer} times</p>
         <button onClick={() => setTimer(timer + 1)}>Refresh</button>
         <p>
           {route}: {service} {timer}
@@ -109,14 +107,6 @@ const App = () => {
           <option value="4000">4</option>
           <option value="5000">5</option>
         </select>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
       </header>
     </div>
   );

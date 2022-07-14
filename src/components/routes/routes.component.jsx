@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { selectRoutesMap } from "../../sagas/routes/routes.selector";
+import "../../index.css";
 
 const Routes = ({ route }) => {
   const { id, name, service } = route;
@@ -20,7 +21,18 @@ const Routes = ({ route }) => {
     <div className="route-container" id={id}>
       <span className="emoji">{emoji}</span>
       <span className="name">{name}</span>
-      <span className="service">{service}</span>
+      <span className="departing">5:08pm</span>
+      <span className="platform">
+        Platform{" "}
+        <span className="number">
+          <br />
+          11
+        </span>
+      </span>
+      <span className="disruptions">
+        Parliament Station: Pedestrian access and car park changes from June
+        2022 to July 2023
+      </span>
     </div>
   );
 };
