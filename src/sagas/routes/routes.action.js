@@ -12,24 +12,21 @@ export const fetchRoutesFailed = (error) =>
   createAction(ROUTES_ACTION_TYPES.FETCH_ROUTES_FAILED, error);
 
 export const getRoutes = async (route) => {
-  let routes = {
-    id: [],
-    name: [],
-    service: [],
-  };
+  let routes = [];
   await route.route.forEach((currRoute) => {
     ptvClient
       .then((apis) => {
         return apis.Routes.Routes_RouteFromId({ route_id: currRoute });
       })
       .then((res) => {
-        let service = res.body.route.route_service_status.description;
-        routes.id.push(currRoute);
-        routes.name.push(res.body.route.route_name);
-        routes.service.push(res.body.route.route_service_status.description);
+        routes.push({
+          id: currRoute,
+          name: res.body.route.route_name,
+          service: res.body.route.route_service_status.description,
+        });
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
       });
   });
   return routes;

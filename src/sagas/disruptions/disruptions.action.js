@@ -13,21 +13,20 @@ export const fetchDisruptionsFailed = (error) =>
   createAction(DISRUPTIONS_ACTION_TYPES.FETCH_DISRUPTIONS_FAILED, error);
 
 export const getDisruptions = async (obj) => {
-  try {
-    await obj.forEach((id) => {
-      ptvClient
-        .then((apis) => {
-          return apis.Disruptions.Disruptions_GetDisruptionById({
-            disruption_id: `${id}`,
-          });
-        })
-        .then((res) => {
-          // setNext(id, res.body.disruption.title);
+  await obj.forEach((id) => {
+    ptvClient
+      .then((apis) => {
+        return apis.Disruptions.Disruptions_GetDisruptionById({
+          disruption_id: `${id}`,
         });
-    });
-  } catch (error) {
-    console.log(error);
-  }
+      })
+      .then((res) => {
+        // setNext(id, res.body.disruption.title);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  });
 };
 
 // export const setNext = (id, disruption) => {

@@ -10,7 +10,7 @@ import { createAction } from "./utils/reducer.utils";
 import { fetchRoutesStart } from "./sagas/routes/routes.action";
 import { fetchDeparturesStart } from "./sagas/departures/departures.action";
 import { fetchDisruptionsStart } from "./sagas/disruptions/disruptions.action";
-import Departures from "./components/departures/departures.component";
+import TrainRoutes from "./components/routes/train-routes.component";
 import { store } from "./sagas/store";
 
 import logo from "./logo.svg";
@@ -84,7 +84,7 @@ const App = () => {
   return (
     <div className="App">
       <header className="App-header">
-        <Departures />
+        <TrainRoutes />
         <button onClick={() => setTimer(timer + 1)}>Refresh</button>
         <p>
           {route}: {service} {timer}

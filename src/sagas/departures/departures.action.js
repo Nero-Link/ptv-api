@@ -50,6 +50,9 @@ export const getDepartures = async (route) => {
             }
           }
         });
+      })
+      .catch((error) => {
+        console.error(error);
       });
   });
   console.log("Next 5 departures: ");
