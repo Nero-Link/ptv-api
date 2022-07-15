@@ -1,5 +1,9 @@
-import { React, useState, useEffect } from "react";
+import { React, useState, useEffect, Fragment } from "react";
 import { useSelector } from "react-redux";
+import { Swiper, SwiperSlide } from "swiper/react";
+import SwiperCore, { Autoplay } from "swiper/core";
+import "swiper/css";
+import "swiper/css/autoplay";
 import Spinner from "../spinner/spinner.component";
 import Departures from "../departures/departures.component";
 import {
@@ -7,6 +11,8 @@ import {
   selectRoutesIsLoading,
 } from "../../sagas/routes/routes.selector";
 import { route } from "../../App";
+
+SwiperCore.use([Autoplay]);
 
 const TrainRoutes = () => {
   const routesMap = useSelector(selectRoutesMap);
@@ -32,7 +38,7 @@ const TrainRoutes = () => {
         <div className="routes-container">
           {objectLoop(routesMap)}
           {routesArray.length > 0 &&
-            routesArray.map((route) => {
+            routesArray.slice(0, 6).map((route) => {
               return <Departures key={route[1].id} route={route[1]} />;
             })}
         </div>

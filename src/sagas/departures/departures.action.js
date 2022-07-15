@@ -46,7 +46,7 @@ export const getDepartures = async (route) => {
             new Date(departTime).getTime() > new Date().getTime() + 10 * 60000
           ) {
             counter++;
-            if (counter < 3) {
+            if (counter < 6) {
               departures.push({
                 route_id: currRoute,
                 departures: {

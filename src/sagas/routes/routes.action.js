@@ -13,14 +13,17 @@ export const fetchRoutesFailed = (error) =>
 
 export const getRoutes = async (route) => {
   let routes = [];
+  let counter = 0;
   await route.route.forEach((currRoute) => {
     ptvClient
       .then((apis) => {
         return apis.Routes.Routes_RouteFromId({ route_id: currRoute });
       })
       .then((res) => {
+        counter++;
         routes.push({
           id: currRoute,
+          count: counter,
           name: res.body.route.route_name,
           service: res.body.route.route_service_status.description,
         });

@@ -1,5 +1,9 @@
 import { React, useState, useEffect, Fragment } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { Swiper, SwiperSlide } from "swiper/react";
+import SwiperCore, { Autoplay } from "swiper/core";
+import "swiper/css";
+import "swiper/css/autoplay";
 import Spinner from "../spinner/spinner.component";
 import {
   selectDeparturesMap,
@@ -12,6 +16,8 @@ import {
 import "../../index.css";
 import { store } from "../../sagas/store";
 
+SwiperCore.use([Autoplay]);
+
 const Departures = ({ route }) => {
   const dispatch = useDispatch();
 
@@ -20,7 +26,7 @@ const Departures = ({ route }) => {
   const departuresIsLoading = useSelector(selectDeparturesIsLoading);
   const [departures, setDepartures] = useState(departuresMap[route]);
   const disruptionsMap = useSelector(selectDisruptionsMap);
-  const disruptionsIsLoading = useSelector(selectDeparturesIsLoading);
+  const disruptionsIsLoading = useSelector(selectDisruptionsIsLoading);
   const [disruptions, setDisruptions] = useState(disruptionsMap[route]);
   let departuresArray = [];
   let disruptionsArray = [];
@@ -64,16 +70,76 @@ const Departures = ({ route }) => {
           <Spinner />
         ) : (
           <Fragment>
-            {departuresLoop(departuresMap)}
-            {departuresArray.length > 0 &&
-              departuresArray.map((departure) => {
-                if (
-                  departure[1].route_id === id &&
-                  departure[1].departures.count === 1
-                ) {
-                  return departure[1].departures.time;
-                }
-              })}
+            <Swiper
+              slidesPerView={1}
+              loop={true}
+              speed={750}
+              autoplay={{
+                delay: 5000,
+                disableOnInteraction: false,
+              }}
+            >
+              <SwiperSlide>
+                {departuresLoop(departuresMap)}
+                {departuresArray.length > 0 &&
+                  departuresArray.map((departure) => {
+                    if (
+                      departure[1].route_id === id &&
+                      departure[1].departures.count === 1
+                    ) {
+                      return departure[1].departures.time;
+                    }
+                  })}
+              </SwiperSlide>
+              <SwiperSlide>
+                {departuresLoop(departuresMap)}
+                {departuresArray.length > 0 &&
+                  departuresArray.map((departure) => {
+                    if (
+                      departure[1].route_id === id &&
+                      departure[1].departures.count === 2
+                    ) {
+                      return departure[1].departures.time;
+                    }
+                  })}
+              </SwiperSlide>
+              <SwiperSlide>
+                {departuresLoop(departuresMap)}
+                {departuresArray.length > 0 &&
+                  departuresArray.map((departure) => {
+                    if (
+                      departure[1].route_id === id &&
+                      departure[1].departures.count === 3
+                    ) {
+                      return departure[1].departures.time;
+                    }
+                  })}
+              </SwiperSlide>
+              <SwiperSlide>
+                {departuresLoop(departuresMap)}
+                {departuresArray.length > 0 &&
+                  departuresArray.map((departure) => {
+                    if (
+                      departure[1].route_id === id &&
+                      departure[1].departures.count === 4
+                    ) {
+                      return departure[1].departures.time;
+                    }
+                  })}
+              </SwiperSlide>
+              <SwiperSlide>
+                {departuresLoop(departuresMap)}
+                {departuresArray.length > 0 &&
+                  departuresArray.map((departure) => {
+                    if (
+                      departure[1].route_id === id &&
+                      departure[1].departures.count === 5
+                    ) {
+                      return departure[1].departures.time;
+                    }
+                  })}
+              </SwiperSlide>
+            </Swiper>
           </Fragment>
         )}
       </span>
@@ -85,17 +151,81 @@ const Departures = ({ route }) => {
             <Spinner />
           ) : (
             <Fragment>
-              {departuresLoop(departuresMap)}
-              {departuresArray.length > 0 &&
-                departuresArray.map((departure) => {
-                  if (
-                    departure[1].route_id === id &&
-                    departure[1].departures.count === 1 &&
-                    departure[1].departures.platform !== null
-                  ) {
-                    return departure[1].departures.platform;
-                  }
-                })}
+              <Swiper
+                slidesPerView={1}
+                loop={true}
+                speed={750}
+                autoplay={{
+                  delay: 5000,
+                  disableOnInteraction: false,
+                }}
+              >
+                <SwiperSlide>
+                  {departuresLoop(departuresMap)}
+                  {departuresArray.length > 0 &&
+                    departuresArray.map((departure) => {
+                      if (
+                        departure[1].route_id === id &&
+                        departure[1].departures.count === 1 &&
+                        departure[1].departures.platform !== null
+                      ) {
+                        return departure[1].departures.platform;
+                      }
+                    })}
+                </SwiperSlide>
+                <SwiperSlide>
+                  {departuresLoop(departuresMap)}
+                  {departuresArray.length > 0 &&
+                    departuresArray.map((departure) => {
+                      if (
+                        departure[1].route_id === id &&
+                        departure[1].departures.count === 2 &&
+                        departure[1].departures.platform !== null
+                      ) {
+                        return departure[1].departures.platform;
+                      }
+                    })}
+                </SwiperSlide>
+                <SwiperSlide>
+                  {departuresLoop(departuresMap)}
+                  {departuresArray.length > 0 &&
+                    departuresArray.map((departure) => {
+                      if (
+                        departure[1].route_id === id &&
+                        departure[1].departures.count === 3 &&
+                        departure[1].departures.platform !== null
+                      ) {
+                        return departure[1].departures.platform;
+                      }
+                    })}
+                </SwiperSlide>
+                <SwiperSlide>
+                  {departuresLoop(departuresMap)}
+                  {departuresArray.length > 0 &&
+                    departuresArray.map((departure) => {
+                      if (
+                        departure[1].route_id === id &&
+                        departure[1].departures.count === 4 &&
+                        departure[1].departures.platform !== null
+                      ) {
+                        return departure[1].departures.platform;
+                      }
+                    })}
+                </SwiperSlide>
+                <SwiperSlide>
+                  {departuresLoop(departuresMap)}
+                  {departuresArray.length > 0 &&
+                    departuresArray.map((departure) => {
+                      if (
+                        departure[1].route_id === id &&
+                        departure[1].departures.count === 5 &&
+                        departure[1].departures.platform !== null
+                      ) {
+                        return departure[1].departures.platform;
+                      }
+                    })}
+                </SwiperSlide>
+              </Swiper>
             </Fragment>
           )}
         </span>
@@ -105,17 +235,81 @@ const Departures = ({ route }) => {
           <Spinner />
         ) : (
           <Fragment>
-            {disruptionsLoop(disruptionsMap)}
-            {disruptionsArray.length > 0 &&
-              disruptionsArray.map((disruption) => {
-                if (
-                  disruption[1].route_id === id &&
-                  disruption[1].disruptions.count === 1
-                ) {
-                  return disruption[1].disruptions.title;
-                }
-                console.log(disruption);
-              })}
+            <Swiper
+              slidesPerView={1}
+              loop={true}
+              speed={750}
+              autoplay={{
+                delay: 5000,
+                disableOnInteraction: false,
+              }}
+            >
+              <SwiperSlide>
+                {" "}
+                {disruptionsLoop(disruptionsMap)}
+                {disruptionsArray.length > 0 &&
+                  disruptionsArray.map((disruption) => {
+                    if (
+                      disruption[1].route_id === id &&
+                      disruption[1].disruptions.count === 1
+                    ) {
+                      return disruption[1].disruptions.title;
+                    }
+                  })}
+              </SwiperSlide>
+              <SwiperSlide>
+                {" "}
+                {disruptionsLoop(disruptionsMap)}
+                {disruptionsArray.length > 0 &&
+                  disruptionsArray.map((disruption) => {
+                    if (
+                      disruption[1].route_id === id &&
+                      disruption[1].disruptions.count === 2
+                    ) {
+                      return disruption[1].disruptions.title;
+                    }
+                  })}
+              </SwiperSlide>
+              <SwiperSlide>
+                {" "}
+                {disruptionsLoop(disruptionsMap)}
+                {disruptionsArray.length > 0 &&
+                  disruptionsArray.map((disruption) => {
+                    if (
+                      disruption[1].route_id === id &&
+                      disruption[1].disruptions.count === 3
+                    ) {
+                      return disruption[1].disruptions.title;
+                    }
+                  })}
+              </SwiperSlide>
+              <SwiperSlide>
+                {" "}
+                {disruptionsLoop(disruptionsMap)}
+                {disruptionsArray.length > 0 &&
+                  disruptionsArray.map((disruption) => {
+                    if (
+                      disruption[1].route_id === id &&
+                      disruption[1].disruptions.count === 4
+                    ) {
+                      return disruption[1].disruptions.title;
+                    }
+                  })}
+              </SwiperSlide>
+              <SwiperSlide>
+                {" "}
+                {disruptionsLoop(disruptionsMap)}
+                {disruptionsArray.length > 0 &&
+                  disruptionsArray.map((disruption) => {
+                    if (
+                      disruption[1].route_id === id &&
+                      disruption[1].disruptions.count === 5
+                    ) {
+                      return disruption[1].disruptions.title;
+                    }
+                  })}
+              </SwiperSlide>
+            </Swiper>
           </Fragment>
         )}
       </span>

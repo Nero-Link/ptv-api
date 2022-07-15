@@ -56,6 +56,10 @@ code {
   height: 100%;
 }
 
+.emoji {
+  font-size: 2.5rem;
+}
+
 .name,
 .departing {
   line-height: 100px;
@@ -68,7 +72,7 @@ code {
 }
 
 .departing {
-  width: 17.5%;
+  width: 15%;
 }
 .platform {
   width: 12.5%;
@@ -86,5 +90,5 @@ code {
 .disruptions {
   font-size: 1.5rem;
   padding: 0px 20px;
-  width: 45%;
+  width: 35%;
 }
