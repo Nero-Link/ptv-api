@@ -9,35 +9,31 @@ import {
   selectDisruptionsMap,
   selectDisruptionsIsLoading,
 } from "../../sagas/disruptions/disruptions.selector";
-import { fetchDisruptionsStart } from "../../sagas/disruptions/disruptions.action";
-import { timer } from "../../App";
 import "../../index.css";
 import { store } from "../../sagas/store";
 
-export let departuresMap;
 const Departures = ({ route }) => {
   const dispatch = useDispatch();
 
   const { id, name, service } = route;
-  departuresMap = useSelector(selectDeparturesMap);
-  const isLoading = useSelector(selectDeparturesIsLoading);
+  const departuresMap = useSelector(selectDeparturesMap);
+  const departuresIsLoading = useSelector(selectDeparturesIsLoading);
   const [departures, setDepartures] = useState(departuresMap[route]);
-  // const disruptionsMap = useSelector(selectDisruptionsMap);
-  // // const isLoading = useSelector(selectDeparturesIsLoading);
-  // const [disruptions, setDisruptions] = useState(disruptionsMap[route]);
+  const disruptionsMap = useSelector(selectDisruptionsMap);
+  const disruptionsIsLoading = useSelector(selectDeparturesIsLoading);
+  const [disruptions, setDisruptions] = useState(disruptionsMap[route]);
   let departuresArray = [];
+  let disruptionsArray = [];
 
-  const objectLoop = () => {
-    if (departuresArray.length === 0) {
+  const departuresLoop = () => {
+    if (departuresArray.length === 0)
       departuresArray = Object.entries(departuresMap);
-      departuresArray.forEach((departures) => {
-        if (departures[1].route_id === id)
-          // departuresArray.push(departures);
-          console.log(departures[1].departures.disruptions);
-        // console.log(departures[1]);
-      });
-    }
-    // console.log(departuresMap);
+    return;
+  };
+
+  const disruptionsLoop = () => {
+    if (disruptionsArray.length === 0)
+      disruptionsArray = Object.entries(disruptionsMap);
     return;
   };
 
@@ -45,13 +41,9 @@ const Departures = ({ route }) => {
     setDepartures(departuresMap[route]);
   }, [departures, departuresMap, store]);
 
-  // useEffect(() => {
-  //   setDisruptions(disruptionsMap[route]);
-  // }, [disruptions, disruptionsMap, store]);
-
   useEffect(() => {
-    dispatch(fetchDisruptionsStart());
-  }, [departures, departuresMap]);
+    setDisruptions(disruptionsMap[route]);
+  }, [disruptions, disruptionsMap, store]);
 
   let emoji = "🟢";
   if (service === "Good Service") {
@@ -68,11 +60,11 @@ const Departures = ({ route }) => {
       <span className="emoji">{emoji}</span>
       <span className="name">{name}</span>
       <span className="departing">
-        {isLoading ? (
+        {departuresIsLoading ? (
           <Spinner />
         ) : (
           <Fragment>
-            {objectLoop(departuresMap)}
+            {departuresLoop(departuresMap)}
             {departuresArray.length > 0 &&
               departuresArray.map((departure) => {
                 if (
@@ -89,11 +81,11 @@ const Departures = ({ route }) => {
         Platform{" "}
         <span className="number">
           <br />
-          {isLoading ? (
+          {departuresIsLoading ? (
             <Spinner />
           ) : (
             <Fragment>
-              {objectLoop(departuresMap)}
+              {departuresLoop(departuresMap)}
               {departuresArray.length > 0 &&
                 departuresArray.map((departure) => {
                   if (
@@ -109,8 +101,23 @@ const Departures = ({ route }) => {
         </span>
       </span>
       <span className="disruptions">
-        Parliament Station: Pedestrian access and car park changes from June
-        2022 to July 2023
+        {disruptionsIsLoading ? (
+          <Spinner />
+        ) : (
+          <Fragment>
+            {disruptionsLoop(disruptionsMap)}
+            {disruptionsArray.length > 0 &&
+              disruptionsArray.map((disruption) => {
+                if (
+                  disruption[1].route_id === id &&
+                  disruption[1].disruptions.count === 1
+                ) {
+                  return disruption[1].disruptions.title;
+                }
+                console.log(disruption);
+              })}
+          </Fragment>
+        )}
       </span>
     </div>
   );

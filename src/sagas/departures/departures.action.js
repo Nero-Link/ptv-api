@@ -46,7 +46,7 @@ export const getDepartures = async (route) => {
             new Date(departTime).getTime() > new Date().getTime() + 10 * 60000
           ) {
             counter++;
-            if (counter < 6) {
+            if (counter < 3) {
               departures.push({
                 route_id: currRoute,
                 departures: {
@@ -67,7 +67,5 @@ export const getDepartures = async (route) => {
         console.error(error);
       });
   });
-  console.log("Next 5 departures: ");
-  console.log(departures);
   return departures;
 };

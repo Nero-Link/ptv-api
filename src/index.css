@@ -34,7 +34,8 @@ code {
 }
 
 .departure-container {
-  background: #0072ce;
+  /* background: #0072ce; */
+  background: rgb(0, 69, 255);
   height: 100px;
   border-radius: 50px;
   align-items: center;

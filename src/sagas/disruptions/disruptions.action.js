@@ -11,36 +11,32 @@ export const fetchDisruptionsSuccess = (disruptions) =>
 export const fetchDisruptionsFailed = (error) =>
   createAction(DISRUPTIONS_ACTION_TYPES.FETCH_DISRUPTIONS_FAILED, error);
 
-export const getDisruptions = async (departures) => {
+export const getDisruptions = async (route) => {
   let disruptions = [];
-  await departures.departuresMap.forEach((departure) => {
-    console.log(departure);
-    departure.departures.disruptions.id.forEach((id) => {
-      // console.log(id);
-      // ptvClient
-      //   .then((apis) => {
-      //     return apis.Disruptions.Disruptions_GetDisruptionById({
-      //       disruption_id: `${id}`,
-      //     });
-      //   })
-      //   .then((res) => {
-      //     disruptions.push(res.body.disruption.title);
-      //   })
-      //   .catch((error) => {
-      //     console.error(error);
-      //   });
-    });
+  await route.route.forEach((currRoute) => {
+    ptvClient
+      .then((apis) => {
+        return apis.Disruptions.Disruptions_GetDisruptionsByRoute({
+          route_id: `${currRoute}`,
+        });
+      })
+      .then((res) => {
+        let counter = 0;
+        res.body.disruptions.metro_train.forEach((disruption) => {
+          counter++;
+          disruptions.push({
+            route_id: currRoute,
+            disruptions: {
+              id: disruption.disruption_id,
+              count: counter,
+              title: disruption.title,
+            },
+          });
+        });
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   });
   return disruptions;
 };
-
-// export const setNext = (id, disruption) => {
-//   departures.forEach((departure) => {
-//     departure.disruptions.id.forEach(() => {
-//       if (departure.disruptions.id.includes(id)) {
-//         if (!departure.disruptions.title.includes(disruption))
-//           departure.disruptions.title.push(disruption);
-//       }
-//     });
-//   });
-// };

@@ -9,6 +9,7 @@ import * as CryptoJS from "crypto-js";
 import { createAction } from "./utils/reducer.utils";
 import { fetchRoutesStart } from "./sagas/routes/routes.action";
 import { fetchDeparturesStart } from "./sagas/departures/departures.action";
+import { fetchDisruptionsStart } from "./sagas/disruptions/disruptions.action";
 import TrainRoutes from "./components/routes/train-routes.component";
 import { store } from "./sagas/store";
 
@@ -24,10 +25,16 @@ const App = () => {
   useEffect(() => {
     dispatch(fetchRoutesStart());
     dispatch(fetchDeparturesStart());
+    dispatch(fetchDisruptionsStart());
   }, [dispatch]);
 
   // let timer = 0;
   let timeout = 10000;
+
+  // if (timer > timeout)
+  // {
+  //   refresh = true
+  // }
 
   // function setTime() {
   //   timeout = document.getElementById("timeout").value * 1000;
@@ -41,6 +48,7 @@ const App = () => {
   //   service = "";
   //   departures = [];
   //   timer = 0;
+  // refresh = false;
   //   // getRoute();
   // }
 
