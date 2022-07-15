@@ -36,11 +36,39 @@ const TrainRoutes = () => {
         <Spinner />
       ) : (
         <div className="routes-container">
-          {objectLoop(routesMap)}
-          {routesArray.length > 0 &&
-            routesArray.slice(0, 6).map((route) => {
-              return <Departures key={route[1].id} route={route[1]} />;
-            })}
+          <Fragment>
+            <Swiper
+              slidesPerView={1}
+              loop={true}
+              speed={750}
+              autoplay={{
+                delay: 30000,
+                disableOnInteraction: false,
+              }}
+            >
+              <SwiperSlide>
+                {objectLoop(routesMap)}
+                {routesArray.length > 0 &&
+                  routesArray.slice(0, 5).map((route) => {
+                    return <Departures key={route[1].id} route={route[1]} />;
+                  })}
+              </SwiperSlide>
+              <SwiperSlide>
+                {objectLoop(routesMap)}
+                {routesArray.length > 0 &&
+                  routesArray.slice(5, 10).map((route) => {
+                    return <Departures key={route[1].id} route={route[1]} />;
+                  })}
+              </SwiperSlide>
+              <SwiperSlide>
+                {objectLoop(routesMap)}
+                {routesArray.length > 0 &&
+                  routesArray.slice(11, 15).map((route) => {
+                    return <Departures key={route[1].id} route={route[1]} />;
+                  })}
+              </SwiperSlide>
+            </Swiper>
+          </Fragment>
         </div>
       )}
     </div>

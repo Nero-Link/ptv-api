@@ -33,6 +33,10 @@ code {
     monospace;
 }
 
+.routes-container {
+  width: 1575px;
+}
+
 .departure-container {
   /* background: #0072ce; */
   background: rgb(0, 69, 255);
