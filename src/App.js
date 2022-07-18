@@ -1,110 +1,59 @@
 import { Routes, Route } from "react-router-dom";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 
-import URI from "urijs";
-import swagger from "swagger-client";
-import * as CryptoJS from "crypto-js";
-
-import { createAction } from "./utils/reducer.utils";
 import { fetchRoutesStart } from "./sagas/routes/routes.action";
 import { fetchDeparturesStart } from "./sagas/departures/departures.action";
 import { fetchDisruptionsStart } from "./sagas/disruptions/disruptions.action";
 import TrainRoutes from "./components/routes/train-routes.component";
-import { store } from "./sagas/store";
+import Spinner from "./components/spinner/spinner.component";
 
-import logo from "./logo.svg";
+import logo from "./train.svg";
 import "./App.css";
 
+import { store } from "./sagas/store";
+
 export let route = [1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 14, 15, 16, 17];
-export let timer = 0;
-let setTimer;
+let isLoading = true;
 const App = () => {
   const dispatch = useDispatch();
+  let [fetch, setFetch] = useState(0);
+  let [refresh, setRefresh] = useState(0);
+  let [timer, setTimer] = useState(0);
+  let timeout = 150;
+  let tick = 5000;
 
   useEffect(() => {
     dispatch(fetchRoutesStart());
     dispatch(fetchDeparturesStart());
     dispatch(fetchDisruptionsStart());
-  }, [dispatch]);
+    setFetch(fetch + 1);
+  }, [dispatch, refresh]);
 
-  // let timer = 0;
-  let timeout = 10000;
+  useEffect(() => countdown(), []);
 
-  // if (timer > timeout)
-  // {
-  //   refresh = true
-  // }
-
-  // function setTime() {
-  //   timeout = document.getElementById("timeout").value * 1000;
-  //   timer = 0;
-  //   console.log(timeout);
-  //   // timerReset();
-  // }
-
-  // function reset() {
-  //   route = "";
-  //   service = "";
-  //   departures = [];
-  //   timer = 0;
-  // refresh = false;
-  //   // getRoute();
-  // }
-
-  // const increaseCounter = useCallback(() => dispatch({ type: 'increase-counter' }), [])
-  // reset();
-  [timer, setTimer] = useState(0);
+  if (timer > timeout) {
+    isLoading = true;
+    setRefresh(refresh + 1);
+    setTimer(0);
+  }
 
   function countdown() {
     setInterval(function () {
+      isLoading = false;
       setTimer(timer + 1);
-      console.log(timer);
-    }, timeout);
+    }, tick);
   }
-
-  function clearTimer(newTime) {
-    timeout = newTime;
-    timer = 0;
-    clearInterval(countdown);
-    console.log(timeout);
-    countdown();
-  }
-
-  // countdown();
-
-  // setInterval(function () {
-  //   reset();
-  // }, timeout);
-
-  useEffect(() => {
-    document.title = `You refreshed ${timer} times`;
-  });
-
-  // store.subscribe(() => {
-  //   console.log("state\n", store.getState());
-  //   // debugger;
-  // });
 
   return (
     <div className="App">
+      <div className="banner">
+        {<img src={logo} height="50px" className="logo" />}
+        <h2 className="title">Southern Cross Train Departures</h2>
+        {<img src={logo} height="50px" className="logo" />}
+      </div>
       <header className="App-header">
-        <TrainRoutes />
-        <button onClick={() => setTimer(timer + 1)}>Refresh</button>
-        <p>Refreshed: {timer}</p>
-        <select
-          onChange={(e) => {
-            clearTimer(e.target.value);
-          }}
-          defaultValue={3000}
-          id="timeout"
-        >
-          <option value="1000">1</option>
-          <option value="2000">2</option>
-          <option value="3000">3</option>
-          <option value="4000">4</option>
-          <option value="5000">5</option>
-        </select>
+        {isLoading ? <Spinner /> : <TrainRoutes />}
       </header>
     </div>
   );

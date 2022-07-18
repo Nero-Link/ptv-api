@@ -19,19 +19,18 @@ const TrainRoutes = () => {
   const isLoading = useSelector(selectRoutesIsLoading);
   const [routes, setRoutes] = useState(routesMap[route]);
   let routesArray = [];
-
   const objectLoop = () => {
-    if (routesArray.length === 0) routesArray = Object.entries(routesMap);
+    if (routesArray.length === 0 && routesMap.length > 0)
+      routesArray = Object.entries(routesMap);
     return;
   };
 
   useEffect(() => {
     setRoutes(routesMap[route]);
-  }, [routes, routesMap]);
+  }, [routes, routesMap, routesArray]);
 
   return (
     <div>
-      <h2 className="route-title">Southern Cross Train Departures</h2>
       {isLoading ? (
         <Spinner />
       ) : (

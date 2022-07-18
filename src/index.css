@@ -21,9 +21,10 @@
 
 body {
   margin: 0;
-  font-family: "Network Sans Regular", -apple-system, BlinkMacSystemFont,
-    "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
-    "Droid Sans", "Helvetica Neue", sans-serif;
+  overflow: hidden;
+  font-family: "Saira Extra Condensed", "Network Sans Regular", -apple-system,
+    BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell",
+    "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -33,19 +34,40 @@ code {
     monospace;
 }
 
+.banner {
+  display: flex;
+  background: #003cdc;
+  align-items: center;
+}
+
+.logo {
+  margin: 0px auto;
+  height: 50px;
+  width: 50px;
+}
+
+.title {
+  color: white;
+  margin: 0px auto;
+  font-size: 2.5rem;
+}
+
 .routes-container {
   width: 1575px;
+  margin-top: 5vh;
 }
 
 .departure-container {
   /* background: #0072ce; */
-  background: rgb(0, 69, 255);
-  height: 100px;
-  border-radius: 50px;
+  background: #003cdc;
+  height: 120px;
+  border-radius: 75px;
   align-items: center;
   display: flex;
   color: white;
-  font-family: "Network Sans Bold";
+  /* font-family: "Network Sans Bold"; */
+  font-family: "Open Sans";
+  font-weight: 700;
   margin: 20px;
   padding: 0px 20px;
   width: 1500px;
@@ -66,7 +88,7 @@ code {
 
 .name,
 .departing {
-  line-height: 100px;
+  line-height: 120px;
   font-size: 3rem;
 }
 
@@ -79,12 +101,13 @@ code {
   width: 15%;
 }
 .platform {
-  width: 12.5%;
+  width: 7.5%;
 }
 
 .platform {
   font-size: 1rem;
-  height: 150px;
+  height: 125px;
+  line-height: 40px;
 }
 
 .number {
@@ -94,5 +117,5 @@ code {
 .disruptions {
   font-size: 1.5rem;
   padding: 0px 20px;
-  width: 35%;
+  width: 40%;
 }

@@ -13,8 +13,6 @@ import {
   selectDisruptionsMap,
   selectDisruptionsIsLoading,
 } from "../../sagas/disruptions/disruptions.selector";
-import "../../index.css";
-import { store } from "../../sagas/store";
 
 SwiperCore.use([Autoplay]);
 
@@ -45,11 +43,11 @@ const Departures = ({ route }) => {
 
   useEffect(() => {
     setDepartures(departuresMap[route]);
-  }, [departures, departuresMap, store]);
+  }, [departures, departuresMap]);
 
   useEffect(() => {
     setDisruptions(disruptionsMap[route]);
-  }, [disruptions, disruptionsMap, store]);
+  }, [disruptions, disruptionsMap]);
 
   let emoji = "🟢";
   if (service === "Good Service") {

@@ -5,7 +5,7 @@ import {
   fetchDisruptionsFailed,
   getDisruptions,
 } from "./disruptions.action";
-import { route } from "../../App";
+import { route, setLoaded } from "../../App";
 
 export function* fetchDisruptionsAsync() {
   try {

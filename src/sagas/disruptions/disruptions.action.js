@@ -23,15 +23,24 @@ export const getDisruptions = async (route) => {
       .then((res) => {
         let counter = 0;
         res.body.disruptions.metro_train.forEach((disruption) => {
-          counter++;
-          disruptions.push({
-            route_id: currRoute,
-            disruptions: {
-              id: disruption.disruption_id,
-              count: counter,
-              title: disruption.title,
-            },
-          });
+          if (
+            !disruption.title.includes("Car") &&
+            !disruption.title.includes("car") &&
+            !disruption.title.includes("pedestrian") &&
+            !disruption.title.includes("Pedestrian") &&
+            !disruption.title.includes("elevator") &&
+            !disruption.title.includes("escalator")
+          ) {
+            counter++;
+            disruptions.push({
+              route_id: currRoute,
+              disruptions: {
+                id: disruption.disruption_id,
+                count: counter,
+                title: disruption.title,
+              },
+            });
+          }
         });
       })
       .catch((error) => {
