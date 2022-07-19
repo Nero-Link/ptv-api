@@ -10,7 +10,7 @@ import {
   selectRoutesMap,
   selectRoutesIsLoading,
 } from "../../sagas/routes/routes.selector";
-import { route } from "../../App";
+import { route } from "../../routes/trains";
 
 SwiperCore.use([Autoplay]);
 

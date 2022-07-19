@@ -34,10 +34,25 @@ code {
     monospace;
 }
 
+.selector-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.selector {
+  padding: 10vw;
+  font-size: 3rem;
+  font-weight: 700;
+  text-align: center;
+}
+
 .banner {
   display: flex;
   background: #003cdc;
   align-items: center;
+  justify-content: space-evenly;
 }
 
 .logo {
@@ -48,7 +63,7 @@ code {
 
 .title {
   color: white;
-  margin: 0px auto;
+  margin: 0px;
   font-size: 2.5rem;
 }
 

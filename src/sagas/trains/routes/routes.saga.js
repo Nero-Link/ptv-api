@@ -5,7 +5,7 @@ import {
   fetchRoutesFailed,
   getRoutes,
 } from "./routes.action";
-import { route } from "../../App";
+import { route } from "../../routes/trains";
 
 export function* fetchRoutesAsync() {
   try {
