@@ -6,7 +6,7 @@ export const DEPARTURES_INITIAL_STATE = {
   error: null,
 };
 
-export const departuresReducer = (
+export const trainsDeparturesReducer = (
   state = DEPARTURES_INITIAL_STATE,
   action = {}
 ) => {

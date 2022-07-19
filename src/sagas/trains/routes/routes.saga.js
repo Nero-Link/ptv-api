@@ -20,6 +20,6 @@ export function* onFetchRoutes() {
   yield takeLatest(ROUTES_ACTION_TYPES.FETCH_ROUTES_START, fetchRoutesAsync);
 }
 
-export function* routesSaga() {
+export function* trainsRoutesSaga() {
   yield all([call(onFetchRoutes)]);
 }

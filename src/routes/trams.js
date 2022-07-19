@@ -10,7 +10,7 @@ import Spinner from "../components/spinner/spinner.component";
 import logo from "../images/tram.svg";
 import "../App.css";
 
-export let route = [1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 14, 15, 16, 17];
+export let route = { latitude: "-37.816774", longitude: "144.955539" };
 let isLoading = true;
 
 const Trams = () => {
@@ -23,8 +23,8 @@ const Trams = () => {
 
   useEffect(() => {
     dispatch(fetchRoutesStart());
-    dispatch(fetchDeparturesStart());
-    dispatch(fetchDisruptionsStart());
+    // dispatch(fetchDeparturesStart());
+    // dispatch(fetchDisruptionsStart());
     setFetch(fetch + 1);
   }, [dispatch, refresh]);
 

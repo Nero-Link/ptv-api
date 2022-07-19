@@ -6,7 +6,7 @@ export const DISRUPTIONS_INITIAL_STATE = {
   error: null,
 };
 
-export const disruptionsReducer = (
+export const trainsDisruptionsReducer = (
   state = DISRUPTIONS_INITIAL_STATE,
   action = {}
 ) => {

@@ -1,10 +1,16 @@
 import { combineReducers } from "redux";
-import { routesReducer } from "./trains/routes/routes.reducer";
-import { departuresReducer } from "./trains/departures/departures.reducer";
-import { disruptionsReducer } from "./trains/disruptions/disruptions.reducer";
+import { trainsRoutesReducer } from "./trains/routes/routes.reducer";
+import { trainsDeparturesReducer } from "./trains/departures/departures.reducer";
+import { trainsDisruptionsReducer } from "./trains/disruptions/disruptions.reducer";
+import { tramsRoutesReducer } from "./trams/routes/routes.reducer";
+import { tramsDeparturesReducer } from "./trams/departures/departures.reducer";
+import { tramsDisruptionsReducer } from "./trams/disruptions/disruptions.reducer";
 
 export const rootReducer = combineReducers({
-  routes: routesReducer,
-  departures: departuresReducer,
-  disruptions: disruptionsReducer,
+  trainsRoutes: trainsRoutesReducer,
+  trainsDepartures: trainsDeparturesReducer,
+  trainsDisruptions: trainsDisruptionsReducer,
+  tramsRoutes: tramsRoutesReducer,
+  tramsDepartures: tramsDeparturesReducer,
+  tramsDisruptions: tramsDisruptionsReducer,
 });

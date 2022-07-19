@@ -5,7 +5,7 @@ import {
   fetchDeparturesFailed,
   getDepartures,
 } from "./departures.action";
-import { route } from "../../../routes/trains";
+import { route } from "../../../routes/trams";
 
 export function* fetchDeparturesAsync() {
   try {
@@ -23,6 +23,6 @@ export function* onFetchDepartures() {
   );
 }
 
-export function* departuresSaga() {
+export function* tramsDeparturesSaga() {
   yield all([call(onFetchDepartures)]);
 }

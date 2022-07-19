@@ -6,7 +6,10 @@ export const ROUTES_INITIAL_STATE = {
   error: null,
 };
 
-export const routesReducer = (state = ROUTES_INITIAL_STATE, action = {}) => {
+export const tramsRoutesReducer = (
+  state = ROUTES_INITIAL_STATE,
+  action = {}
+) => {
   const { type, payload } = action;
 
   switch (type) {

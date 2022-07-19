@@ -97,6 +97,15 @@ code {
   height: 100%;
 }
 
+.name.tram.long {
+  font-size: 1.95rem !important;
+  line-height: 55px !important;
+}
+
+.tram {
+  font-size: 2rem !important;
+}
+
 .emoji {
   font-size: 2.5rem;
 }

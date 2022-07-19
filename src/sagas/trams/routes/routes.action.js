@@ -12,25 +12,37 @@ export const fetchRoutesFailed = (error) =>
   createAction(ROUTES_ACTION_TYPES.FETCH_ROUTES_FAILED, error);
 
 export const getRoutes = async (route) => {
-  let routes = [];
+  let stops = [];
   let counter = 0;
-  await route.route.forEach((currRoute) => {
-    ptvClient
-      .then((apis) => {
-        return apis.Routes.Routes_RouteFromId({ route_id: currRoute });
-      })
-      .then((res) => {
-        counter++;
-        routes.push({
-          id: currRoute,
-          count: counter,
-          name: res.body.route.route_name,
-          service: res.body.route.route_service_status.description,
-        });
-      })
-      .catch((error) => {
-        console.error(error);
+  await ptvClient
+    .then((apis) => {
+      return apis.Stops.Stops_StopsByGeolocation({
+        route_types: 1,
+        latitude: route.route.latitude,
+        longitude: route.route.longitude,
+        max_results: 5,
       });
-  });
-  return routes;
+    })
+    .then((res) => {
+      res.body.stops.forEach((stop) => {
+        let stopName = stop.stop_name;
+        let stopId = stop.stop_name;
+        stopName = stopName.substring(0, stopName.indexOf(" #"));
+        stopId = stopId.substring(stopId.indexOf("#"));
+        counter++;
+        stops.push({
+          id: stop.stop_id,
+          count: counter,
+          name: stopName,
+          stop: stopId.substring(1),
+          routes: stop.routes,
+          disruptions: stop.disruption_ids,
+        });
+      });
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+  console.log(stops);
+  return stops;
 };

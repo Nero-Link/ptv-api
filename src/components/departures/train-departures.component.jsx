@@ -8,15 +8,15 @@ import Spinner from "../spinner/spinner.component";
 import {
   selectDeparturesMap,
   selectDeparturesIsLoading,
-} from "../../sagas/departures/departures.selector";
+} from "../../sagas/trains/departures/departures.selector";
 import {
   selectDisruptionsMap,
   selectDisruptionsIsLoading,
-} from "../../sagas/disruptions/disruptions.selector";
+} from "../../sagas/trains/disruptions/disruptions.selector";
 
 SwiperCore.use([Autoplay]);
 
-const Departures = ({ route }) => {
+const TrainDepartures = ({ route }) => {
   const dispatch = useDispatch();
 
   const { id, name, service } = route;
@@ -315,4 +315,4 @@ const Departures = ({ route }) => {
   );
 };
 
-export default Departures;
+export default TrainDepartures;

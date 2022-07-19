@@ -5,11 +5,11 @@ import SwiperCore, { Autoplay } from "swiper/core";
 import "swiper/css";
 import "swiper/css/autoplay";
 import Spinner from "../spinner/spinner.component";
-import Departures from "../departures/departures.component";
+import TramDepartures from "../departures/tram-departures.component";
 import {
   selectRoutesMap,
   selectRoutesIsLoading,
-} from "../../sagas/routes/routes.selector";
+} from "../../sagas/trams/routes/routes.selector";
 import { route } from "../../routes/trains";
 
 SwiperCore.use([Autoplay]);
@@ -35,39 +35,11 @@ const TramRoutes = () => {
         <Spinner />
       ) : (
         <div className="routes-container">
-          <Fragment>
-            <Swiper
-              slidesPerView={1}
-              loop={true}
-              speed={750}
-              autoplay={{
-                delay: 30000,
-                disableOnInteraction: false,
-              }}
-            >
-              <SwiperSlide>
-                {objectLoop(routesMap)}
-                {routesArray.length > 0 &&
-                  routesArray.slice(0, 5).map((route) => {
-                    return <Departures key={route[1].id} route={route[1]} />;
-                  })}
-              </SwiperSlide>
-              <SwiperSlide>
-                {objectLoop(routesMap)}
-                {routesArray.length > 0 &&
-                  routesArray.slice(5, 10).map((route) => {
-                    return <Departures key={route[1].id} route={route[1]} />;
-                  })}
-              </SwiperSlide>
-              <SwiperSlide>
-                {objectLoop(routesMap)}
-                {routesArray.length > 0 &&
-                  routesArray.slice(11, 15).map((route) => {
-                    return <Departures key={route[1].id} route={route[1]} />;
-                  })}
-              </SwiperSlide>
-            </Swiper>
-          </Fragment>
+          {objectLoop(routesMap)}
+          {routesArray.length > 0 &&
+            routesArray.map((route) => {
+              return <TramDepartures key={route[1].id} route={route[1]} />;
+            })}
         </div>
       )}
     </div>

@@ -5,11 +5,11 @@ import SwiperCore, { Autoplay } from "swiper/core";
 import "swiper/css";
 import "swiper/css/autoplay";
 import Spinner from "../spinner/spinner.component";
-import Departures from "../departures/departures.component";
+import TrainDepartures from "../departures/train-departures.component";
 import {
   selectRoutesMap,
   selectRoutesIsLoading,
-} from "../../sagas/routes/routes.selector";
+} from "../../sagas/trains/routes/routes.selector";
 import { route } from "../../routes/trains";
 
 SwiperCore.use([Autoplay]);
@@ -49,21 +49,27 @@ const TrainRoutes = () => {
                 {objectLoop(routesMap)}
                 {routesArray.length > 0 &&
                   routesArray.slice(0, 5).map((route) => {
-                    return <Departures key={route[1].id} route={route[1]} />;
+                    return (
+                      <TrainDepartures key={route[1].id} route={route[1]} />
+                    );
                   })}
               </SwiperSlide>
               <SwiperSlide>
                 {objectLoop(routesMap)}
                 {routesArray.length > 0 &&
                   routesArray.slice(5, 10).map((route) => {
-                    return <Departures key={route[1].id} route={route[1]} />;
+                    return (
+                      <TrainDepartures key={route[1].id} route={route[1]} />
+                    );
                   })}
               </SwiperSlide>
               <SwiperSlide>
                 {objectLoop(routesMap)}
                 {routesArray.length > 0 &&
                   routesArray.slice(11, 15).map((route) => {
-                    return <Departures key={route[1].id} route={route[1]} />;
+                    return (
+                      <TrainDepartures key={route[1].id} route={route[1]} />
+                    );
                   })}
               </SwiperSlide>
             </Swiper>

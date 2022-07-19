@@ -5,7 +5,7 @@ import {
   fetchDisruptionsFailed,
   getDisruptions,
 } from "./disruptions.action";
-import { route } from "../../../routes/trains";
+import { route } from "../../../routes/trams";
 
 export function* fetchDisruptionsAsync() {
   try {
@@ -23,6 +23,6 @@ export function* onFetchDisruptions() {
   );
 }
 
-export function* disruptionsSaga() {
+export function* tramsDisruptionsSaga() {
   yield all([call(onFetchDisruptions)]);
 }

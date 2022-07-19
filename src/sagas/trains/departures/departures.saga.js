@@ -23,6 +23,6 @@ export function* onFetchDepartures() {
   );
 }
 
-export function* departuresSaga() {
+export function* trainsDeparturesSaga() {
   yield all([call(onFetchDepartures)]);
 }

@@ -1,6 +1,6 @@
 import { createSelector } from "reselect";
 
-const selectDeparturesReducer = (state) => state.departures;
+const selectDeparturesReducer = (state) => state.tramsDepartures;
 
 export const selectDepartures = createSelector(
   [selectDeparturesReducer],

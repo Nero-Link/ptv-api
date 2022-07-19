@@ -23,6 +23,6 @@ export function* onFetchDisruptions() {
   );
 }
 
-export function* disruptionsSaga() {
+export function* trainsDisruptionsSaga() {
   yield all([call(onFetchDisruptions)]);
 }

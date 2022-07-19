@@ -1,6 +1,6 @@
 import { createSelector } from "reselect";
 
-const selectDisruptionsReducer = (state) => state.disruptions;
+const selectDisruptionsReducer = (state) => state.tramsDisruptions;
 
 export const selectDisruptions = createSelector(
   [selectDisruptionsReducer],

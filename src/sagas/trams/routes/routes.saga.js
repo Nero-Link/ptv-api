@@ -5,7 +5,7 @@ import {
   fetchRoutesFailed,
   getRoutes,
 } from "./routes.action";
-import { route } from "../../../routes/trains";
+import { route } from "../../../routes/trams";
 
 export function* fetchRoutesAsync() {
   try {
@@ -20,6 +20,6 @@ export function* onFetchRoutes() {
   yield takeLatest(ROUTES_ACTION_TYPES.FETCH_ROUTES_START, fetchRoutesAsync);
 }
 
-export function* routesSaga() {
+export function* tramsRoutesSaga() {
   yield all([call(onFetchRoutes)]);
 }

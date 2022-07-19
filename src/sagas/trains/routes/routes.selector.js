@@ -1,6 +1,6 @@
 import { createSelector } from "reselect";
 
-const selectRoutesReducer = (state) => state.routes;
+const selectRoutesReducer = (state) => state.trainsRoutes;
 
 export const selectRoutes = createSelector(
   [selectRoutesReducer],
