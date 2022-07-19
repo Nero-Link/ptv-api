@@ -1,18 +1,12 @@
-import { React, useState, useEffect, Fragment } from "react";
+import { React, useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore, { Autoplay } from "swiper/core";
-import "swiper/css";
-import "swiper/css/autoplay";
 import Spinner from "../spinner/spinner.component";
 import TramDepartures from "../departures/tram-departures.component";
 import {
   selectRoutesMap,
   selectRoutesIsLoading,
 } from "../../sagas/trams/routes/routes.selector";
-import { route } from "../../routes/trains";
-
-SwiperCore.use([Autoplay]);
+import { route } from "../../routes/trams";
 
 const TramRoutes = () => {
   const routesMap = useSelector(selectRoutesMap);
@@ -34,7 +28,7 @@ const TramRoutes = () => {
       {isLoading ? (
         <Spinner />
       ) : (
-        <div className="routes-container">
+        <div className="routes-container tram-routes">
           {objectLoop(routesMap)}
           {routesArray.length > 0 &&
             routesArray.map((route) => {

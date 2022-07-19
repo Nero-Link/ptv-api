@@ -245,67 +245,77 @@ const TrainDepartures = ({ route }) => {
               <SwiperSlide>
                 {" "}
                 {disruptionsLoop(disruptionsMap)}
-                {disruptionsArray.length > 0 &&
-                  disruptionsArray.map((disruption) => {
-                    if (
-                      disruption[1].route_id === id &&
-                      disruption[1].disruptions.count === 1
-                    ) {
-                      return disruption[1].disruptions.title;
-                    }
-                  })}
+                {disruptionsArray.length > 0
+                  ? disruptionsArray.map((disruption) => {
+                      if (
+                        disruption[1].route_id === id &&
+                        disruption[1].disruptions.count === 1 &&
+                        disruption[1].disruptions.title
+                      ) {
+                        return disruption[1].disruptions.title;
+                      }
+                    })
+                  : "No disruptions"}
               </SwiperSlide>
               <SwiperSlide>
                 {" "}
                 {disruptionsLoop(disruptionsMap)}
-                {disruptionsArray.length > 0 &&
-                  disruptionsArray.map((disruption) => {
-                    if (
-                      disruption[1].route_id === id &&
-                      disruption[1].disruptions.count === 2
-                    ) {
-                      return disruption[1].disruptions.title;
-                    }
-                  })}
+                {disruptionsArray.length > 0
+                  ? disruptionsArray.map((disruption) => {
+                      if (
+                        disruption[1].route_id === id &&
+                        disruption[1].disruptions.count === 2 &&
+                        disruption[1].disruptions.title
+                      ) {
+                        return disruption[1].disruptions.title;
+                      }
+                    })
+                  : "No further disruptions"}
               </SwiperSlide>
               <SwiperSlide>
                 {" "}
                 {disruptionsLoop(disruptionsMap)}
-                {disruptionsArray.length > 0 &&
-                  disruptionsArray.map((disruption) => {
-                    if (
-                      disruption[1].route_id === id &&
-                      disruption[1].disruptions.count === 3
-                    ) {
-                      return disruption[1].disruptions.title;
-                    }
-                  })}
+                {disruptionsArray.length > 0
+                  ? disruptionsArray.map((disruption) => {
+                      if (
+                        disruption[1].route_id === id &&
+                        disruption[1].disruptions.count === 3 &&
+                        disruption[1].disruptions.title
+                      ) {
+                        return disruption[1].disruptions.title;
+                      }
+                    })
+                  : "No further disruptions"}
               </SwiperSlide>
               <SwiperSlide>
                 {" "}
                 {disruptionsLoop(disruptionsMap)}
-                {disruptionsArray.length > 0 &&
-                  disruptionsArray.map((disruption) => {
-                    if (
-                      disruption[1].route_id === id &&
-                      disruption[1].disruptions.count === 4
-                    ) {
-                      return disruption[1].disruptions.title;
-                    }
-                  })}
+                {disruptionsArray.length > 0
+                  ? disruptionsArray.map((disruption) => {
+                      if (
+                        disruption[1].route_id === id &&
+                        disruption[1].disruptions.count === 4 &&
+                        disruption[1].disruptions.title
+                      ) {
+                        return disruption[1].disruptions.title;
+                      }
+                    })
+                  : "No further disruptions"}
               </SwiperSlide>
               <SwiperSlide>
                 {" "}
                 {disruptionsLoop(disruptionsMap)}
-                {disruptionsArray.length > 0 &&
-                  disruptionsArray.map((disruption) => {
-                    if (
-                      disruption[1].route_id === id &&
-                      disruption[1].disruptions.count === 5
-                    ) {
-                      return disruption[1].disruptions.title;
-                    }
-                  })}
+                {disruptionsArray.length > 0
+                  ? disruptionsArray.map((disruption) => {
+                      if (
+                        disruption[1].route_id === id &&
+                        disruption[1].disruptions.count === 5 &&
+                        disruption[1].disruptions.title
+                      ) {
+                        return disruption[1].disruptions.title;
+                      }
+                    })
+                  : "No further disruptions"}
               </SwiperSlide>
             </Swiper>
           </Fragment>

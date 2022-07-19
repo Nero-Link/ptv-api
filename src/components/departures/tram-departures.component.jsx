@@ -19,7 +19,8 @@ SwiperCore.use([Autoplay]);
 const TramDepartures = ({ route }) => {
   const dispatch = useDispatch();
 
-  const { id, name, stop } = route;
+  const { id, name, stop, routes } = route;
+  console.log(routes);
   const departuresMap = useSelector(selectDeparturesMap);
   const departuresIsLoading = useSelector(selectDeparturesIsLoading);
   const [departures, setDepartures] = useState(departuresMap[route]);
@@ -32,6 +33,7 @@ const TramDepartures = ({ route }) => {
   const departuresLoop = () => {
     if (departuresArray.length === 0)
       departuresArray = Object.entries(departuresMap);
+    // console.log(departuresArray);
     return;
   };
 
@@ -39,6 +41,37 @@ const TramDepartures = ({ route }) => {
     if (disruptionsArray.length === 0)
       disruptionsArray = Object.entries(disruptionsMap);
     return;
+  };
+
+  const checkRoutes = (item) => {
+    let result = false;
+    routes.forEach((route) => {
+      if (item.route_id === route.route_id && item.departures.stop_id === id)
+        result = true;
+    });
+    return result;
+  };
+
+  const getRouteNumber = (item) => {
+    let result = "";
+    routes.forEach((route) => {
+      if (item.route_id === route.route_id && item.departures.stop_id === id) {
+        result = route.route_number;
+      }
+    });
+    return result;
+  };
+
+  const getRouteName = (item) => {
+    let result = "";
+    routes.forEach((route) => {
+      if (item.route_id === route.route_id && item.departures.stop_id === id) {
+        let r1 = route.route_name;
+        let r2 = r1.substring(r1.length, r1.indexOf("-"));
+        result = r2.substring(2);
+      }
+    });
+    return result;
   };
 
   useEffect(() => {
@@ -57,7 +90,24 @@ const TramDepartures = ({ route }) => {
         }
       >
         #{stop}
-        {name}
+        {name.length + stop.length < 24 ? name : name.substring(0, 24)}
+        <Swiper
+          slidesPerView={1}
+          loop={true}
+          speed={750}
+          autoplay={{
+            delay: 5000,
+            disableOnInteraction: false,
+          }}
+        >
+          {departuresLoop(departuresMap)}
+          {departuresArray.length > 0 &&
+            departuresArray.map((departure) => {
+              if (getRouteName(departure[1])) {
+                return <SwiperSlide>{getRouteName(departure[1])}</SwiperSlide>;
+              }
+            })}
+        </Swiper>
       </span>
       <span className="departing">
         {departuresIsLoading ? (
@@ -73,66 +123,15 @@ const TramDepartures = ({ route }) => {
                 disableOnInteraction: false,
               }}
             >
-              <SwiperSlide>
-                {departuresLoop(departuresMap)}
-                {departuresArray.length > 0 &&
-                  departuresArray.map((departure) => {
-                    if (
-                      departure[1].route_id === id &&
-                      departure[1].departures.count === 1
-                    ) {
-                      return departure[1].departures.time;
-                    }
-                  })}
-              </SwiperSlide>
-              <SwiperSlide>
-                {departuresLoop(departuresMap)}
-                {departuresArray.length > 0 &&
-                  departuresArray.map((departure) => {
-                    if (
-                      departure[1].route_id === id &&
-                      departure[1].departures.count === 2
-                    ) {
-                      return departure[1].departures.time;
-                    }
-                  })}
-              </SwiperSlide>
-              <SwiperSlide>
-                {departuresLoop(departuresMap)}
-                {departuresArray.length > 0 &&
-                  departuresArray.map((departure) => {
-                    if (
-                      departure[1].route_id === id &&
-                      departure[1].departures.count === 3
-                    ) {
-                      return departure[1].departures.time;
-                    }
-                  })}
-              </SwiperSlide>
-              <SwiperSlide>
-                {departuresLoop(departuresMap)}
-                {departuresArray.length > 0 &&
-                  departuresArray.map((departure) => {
-                    if (
-                      departure[1].route_id === id &&
-                      departure[1].departures.count === 4
-                    ) {
-                      return departure[1].departures.time;
-                    }
-                  })}
-              </SwiperSlide>
-              <SwiperSlide>
-                {departuresLoop(departuresMap)}
-                {departuresArray.length > 0 &&
-                  departuresArray.map((departure) => {
-                    if (
-                      departure[1].route_id === id &&
-                      departure[1].departures.count === 5
-                    ) {
-                      return departure[1].departures.time;
-                    }
-                  })}
-              </SwiperSlide>
+              {departuresLoop(departuresMap)}
+              {departuresArray.length > 0 &&
+                departuresArray.map((departure) => {
+                  if (checkRoutes(departure[1])) {
+                    return (
+                      <SwiperSlide>{departure[1].departures.time}</SwiperSlide>
+                    );
+                  }
+                })}
             </Swiper>
           </Fragment>
         )}
@@ -154,71 +153,17 @@ const TramDepartures = ({ route }) => {
                   disableOnInteraction: false,
                 }}
               >
-                <SwiperSlide>
-                  {departuresLoop(departuresMap)}
-                  {departuresArray.length > 0 &&
-                    departuresArray.map((departure) => {
-                      if (
-                        departure[1].route_id === id &&
-                        departure[1].departures.count === 1 &&
-                        departure[1].departures.platform !== null
-                      ) {
-                        return departure[1].departures.platform;
-                      }
-                    })}
-                </SwiperSlide>
-                <SwiperSlide>
-                  {departuresLoop(departuresMap)}
-                  {departuresArray.length > 0 &&
-                    departuresArray.map((departure) => {
-                      if (
-                        departure[1].route_id === id &&
-                        departure[1].departures.count === 2 &&
-                        departure[1].departures.platform !== null
-                      ) {
-                        return departure[1].departures.platform;
-                      }
-                    })}
-                </SwiperSlide>
-                <SwiperSlide>
-                  {departuresLoop(departuresMap)}
-                  {departuresArray.length > 0 &&
-                    departuresArray.map((departure) => {
-                      if (
-                        departure[1].route_id === id &&
-                        departure[1].departures.count === 3 &&
-                        departure[1].departures.platform !== null
-                      ) {
-                        return departure[1].departures.platform;
-                      }
-                    })}
-                </SwiperSlide>
-                <SwiperSlide>
-                  {departuresLoop(departuresMap)}
-                  {departuresArray.length > 0 &&
-                    departuresArray.map((departure) => {
-                      if (
-                        departure[1].route_id === id &&
-                        departure[1].departures.count === 4 &&
-                        departure[1].departures.platform !== null
-                      ) {
-                        return departure[1].departures.platform;
-                      }
-                    })}
-                </SwiperSlide>
-                <SwiperSlide>
-                  {departuresLoop(departuresMap)}
-                  {departuresArray.length > 0 &&
-                    departuresArray.map((departure) => {
-                      if (
-                        departure[1].route_id === id &&
-                        departure[1].departures.count === 5 &&
-                        departure[1].departures.platform !== null
-                      ) {
-                        return departure[1].departures.platform;
-                      }
-                    })}
-                </SwiperSlide>
+                {departuresLoop(departuresMap)}
+                {departuresArray.length > 0 &&
+                  departuresArray.map((departure) => {
+                    if (getRouteNumber(departure[1])) {
+                      return (
+                        <SwiperSlide>
+                          {getRouteNumber(departure[1])}
+                        </SwiperSlide>
+                      );
+                    }
+                  })}
               </Swiper>
             </Fragment>
           )}
@@ -238,71 +183,21 @@ const TramDepartures = ({ route }) => {
                 disableOnInteraction: false,
               }}
             >
-              <SwiperSlide>
-                {" "}
-                {disruptionsLoop(disruptionsMap)}
-                {disruptionsArray.length > 0 &&
-                  disruptionsArray.map((disruption) => {
+              {disruptionsLoop(disruptionsMap)}
+              {disruptionsArray.length > 0
+                ? disruptionsArray.map((disruption) => {
                     if (
                       disruption[1].route_id === id &&
-                      disruption[1].disruptions.count === 1
+                      disruption[1].disruptions.title
                     ) {
-                      return disruption[1].disruptions.title;
+                      return (
+                        <SwiperSlide>
+                          {disruption[1].disruptions.title}
+                        </SwiperSlide>
+                      );
                     }
-                  })}
-              </SwiperSlide>
-              <SwiperSlide>
-                {" "}
-                {disruptionsLoop(disruptionsMap)}
-                {disruptionsArray.length > 0 &&
-                  disruptionsArray.map((disruption) => {
-                    if (
-                      disruption[1].route_id === id &&
-                      disruption[1].disruptions.count === 2
-                    ) {
-                      return disruption[1].disruptions.title;
-                    }
-                  })}
-              </SwiperSlide>
-              <SwiperSlide>
-                {" "}
-                {disruptionsLoop(disruptionsMap)}
-                {disruptionsArray.length > 0 &&
-                  disruptionsArray.map((disruption) => {
-                    if (
-                      disruption[1].route_id === id &&
-                      disruption[1].disruptions.count === 3
-                    ) {
-                      return disruption[1].disruptions.title;
-                    }
-                  })}
-              </SwiperSlide>
-              <SwiperSlide>
-                {" "}
-                {disruptionsLoop(disruptionsMap)}
-                {disruptionsArray.length > 0 &&
-                  disruptionsArray.map((disruption) => {
-                    if (
-                      disruption[1].route_id === id &&
-                      disruption[1].disruptions.count === 4
-                    ) {
-                      return disruption[1].disruptions.title;
-                    }
-                  })}
-              </SwiperSlide>
-              <SwiperSlide>
-                {" "}
-                {disruptionsLoop(disruptionsMap)}
-                {disruptionsArray.length > 0 &&
-                  disruptionsArray.map((disruption) => {
-                    if (
-                      disruption[1].route_id === id &&
-                      disruption[1].disruptions.count === 5
-                    ) {
-                      return disruption[1].disruptions.title;
-                    }
-                  })}
-              </SwiperSlide>
+                  })
+                : "No disruptions"}
             </Swiper>
           </Fragment>
         )}

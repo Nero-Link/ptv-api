@@ -11,6 +11,7 @@ import logo from "../images/tram.svg";
 import "../App.css";
 
 export let route = { latitude: "-37.816774", longitude: "144.955539" };
+export let stops = [2091, 2087, 2496, 2497, 3106];
 let isLoading = true;
 
 const Trams = () => {
@@ -23,7 +24,7 @@ const Trams = () => {
 
   useEffect(() => {
     dispatch(fetchRoutesStart());
-    // dispatch(fetchDeparturesStart());
+    dispatch(fetchDeparturesStart());
     // dispatch(fetchDisruptionsStart());
     setFetch(fetch + 1);
   }, [dispatch, refresh]);

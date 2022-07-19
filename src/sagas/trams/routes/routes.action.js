@@ -43,6 +43,5 @@ export const getRoutes = async (route) => {
     .catch((error) => {
       console.error(error);
     });
-  console.log(stops);
   return stops;
 };

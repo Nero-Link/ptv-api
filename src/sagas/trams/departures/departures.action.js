@@ -22,16 +22,15 @@ const timeConvert = (departTime) => {
   return hour + ":" + minute + suffix;
 };
 
-export const getDepartures = async (route) => {
+export const getDepartures = async (stops) => {
   let departures = [];
-  await route.route.forEach((currRoute) => {
+  await stops.stops.forEach((currStop) => {
     ptvClient
       .then((apis) => {
-        return apis.Departures.Departures_GetForStopAndRoute({
-          route_id: currRoute,
-          route_type: 0,
-          stop_id: 1181,
-          max_results: 10,
+        return apis.Departures.Departures_GetForStop({
+          stop_id: currStop,
+          route_type: 1,
+          max_results: 2,
         });
       })
       .then((res) => {
@@ -42,24 +41,19 @@ export const getDepartures = async (route) => {
             departTime = departure.estimated_departure_utc;
           else departTime = departure.scheduled_departure_utc;
           if (
-            departure.direction_id !== 1 &&
-            new Date(departTime).getTime() > new Date().getTime() + 10 * 60000
+            new Date(departTime).getTime() >
+            new Date().getTime() + 5 * 60000
           ) {
             counter++;
-            if (counter < 6) {
-              departures.push({
-                route_id: currRoute,
-                departures: {
-                  count: counter,
-                  time: timeConvert(departTime),
-                  fullTime: new Date(departTime).toLocaleString(),
-                  platform: departure.platform_number,
-                  disruptions: {
-                    id: departure.disruption_ids,
-                  },
-                },
-              });
-            }
+            departures.push({
+              route_id: departure.route_id,
+              departures: {
+                count: counter,
+                time: timeConvert(departTime),
+                fullTime: new Date(departTime).toLocaleString(),
+                stop_id: departure.stop_id,
+              },
+            });
           }
         });
       })
@@ -67,5 +61,6 @@ export const getDepartures = async (route) => {
         console.error(error);
       });
   });
+  console.log(departures);
   return departures;
 };
