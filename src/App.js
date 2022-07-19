@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import Home from "./routes/home";
 import Trains from "./routes/trains";
+import Trams from "./routes/trams";
 
 const App = () => {
   return (
@@ -8,7 +9,7 @@ const App = () => {
       <Route>
         <Route index element={<Home />} />
         <Route path="/trains" element={<Trains />} />
-        {/* <Route path="/trams" element={<Trams />} /> */}
+        <Route path="/trams" element={<Trams />} />
       </Route>
     </Routes>
   );

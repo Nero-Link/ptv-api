@@ -1,7 +1,7 @@
 import { combineReducers } from "redux";
-import { routesReducer } from "./routes/routes.reducer";
-import { departuresReducer } from "./departures/departures.reducer";
-import { disruptionsReducer } from "./disruptions/disruptions.reducer";
+import { routesReducer } from "./trains/routes/routes.reducer";
+import { departuresReducer } from "./trains/departures/departures.reducer";
+import { disruptionsReducer } from "./trains/disruptions/disruptions.reducer";
 
 export const rootReducer = combineReducers({
   routes: routesReducer,
