@@ -6,6 +6,7 @@ import { fetchDeparturesStart } from "../sagas/trams/departures/departures.actio
 import { fetchDisruptionsStart } from "../sagas/trams/disruptions/disruptions.action";
 import TramRoutes from "../components/routes/tram-routes.component";
 import Spinner from "../components/spinner/spinner.component";
+import { timeout, tick } from "../App";
 
 import train from "../images/train.svg";
 import tram from "../images/tram.svg";
@@ -20,8 +21,6 @@ const Trams = () => {
   let [fetch, setFetch] = useState(0);
   let [refresh, setRefresh] = useState(0);
   let [timer, setTimer] = useState(0);
-  let timeout = 150;
-  let tick = 5000;
 
   useEffect(() => {
     dispatch(fetchRoutesStart());

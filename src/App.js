@@ -3,6 +3,9 @@ import Home from "./routes/home";
 import Trains from "./routes/trains";
 import Trams from "./routes/trams";
 
+export const timeout = 60;
+export const tick = 5000;
+
 const App = () => {
   return (
     <Routes>
