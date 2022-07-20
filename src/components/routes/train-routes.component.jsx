@@ -10,14 +10,14 @@ import {
   selectRoutesMap,
   selectRoutesIsLoading,
 } from "../../sagas/trains/routes/routes.selector";
-import { route } from "../../routes/trains";
+import { routes } from "../../routes/config";
 
 SwiperCore.use([Autoplay]);
 
 const TrainRoutes = () => {
   const routesMap = useSelector(selectRoutesMap);
   const isLoading = useSelector(selectRoutesIsLoading);
-  const [routes, setRoutes] = useState(routesMap[route]);
+  const [route, setRoutes] = useState(routesMap[routes]);
   let routesArray = [];
   const objectLoop = () => {
     if (routesArray.length === 0 && routesMap.length > 0)
@@ -26,8 +26,8 @@ const TrainRoutes = () => {
   };
 
   useEffect(() => {
-    setRoutes(routesMap[route]);
-  }, [routes, routesMap, routesArray]);
+    setRoutes(routesMap[routes]);
+  }, [route, routesMap, routesArray]);
 
   return (
     <div>

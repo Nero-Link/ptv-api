@@ -22,9 +22,9 @@ const timeConvert = (departTime) => {
   return hour + ":" + minute + suffix;
 };
 
-export const getDepartures = async (route) => {
+export const getDepartures = async (routes) => {
   let departures = [];
-  await route.route.forEach((currRoute) => {
+  await routes.routes.forEach((currRoute) => {
     ptvClient
       .then((apis) => {
         return apis.Departures.Departures_GetForStopAndRoute({

@@ -5,11 +5,11 @@ import {
   fetchRoutesFailed,
   getRoutes,
 } from "./routes.action";
-import { route } from "../../../routes/trams";
+import { location } from "../../../routes/config";
 
 export function* fetchRoutesAsync() {
   try {
-    const routeArray = yield call(getRoutes, { route });
+    const routeArray = yield call(getRoutes, { location });
     yield put(fetchRoutesSuccess(routeArray));
   } catch (error) {
     yield put(fetchRoutesFailed(error));

@@ -5,7 +5,7 @@ import {
   fetchDisruptionsFailed,
   getDisruptions,
 } from "./disruptions.action";
-import { stops } from "../../../routes/trams";
+import { stops } from "../../../routes/config";
 
 export function* fetchDisruptionsAsync() {
   try {

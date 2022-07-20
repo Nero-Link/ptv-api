@@ -5,7 +5,7 @@ import {
   fetchDeparturesFailed,
   getDepartures,
 } from "./departures.action";
-import { stops } from "../../../routes/trams";
+import { stops } from "../../../routes/config";
 
 export function* fetchDeparturesAsync() {
   try {

@@ -1,21 +1,20 @@
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 
-import { fetchRoutesStart } from "../sagas/trains/routes/routes.action";
-import { fetchDeparturesStart } from "../sagas/trains/departures/departures.action";
-import { fetchDisruptionsStart } from "../sagas/trains/disruptions/disruptions.action";
-import TrainRoutes from "../components/routes/train-routes.component";
+import { fetchRoutesStart } from "../sagas/trams/routes/routes.action";
+import { fetchDeparturesStart } from "../sagas/trams/departures/departures.action";
+import { fetchDisruptionsStart } from "../sagas/trams/disruptions/disruptions.action";
+import TramRoutes from "../components/routes/tram-routes.component";
 import Spinner from "../components/spinner/spinner.component";
-import { timeout, tick } from "../App";
+import { timeout, tick } from "./config";
 
 import train from "../images/train.svg";
 import tram from "../images/tram.svg";
 import "../App.css";
 
-export let route = [1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 14, 15, 16, 17];
 let isLoading = true;
 
-const Trains = () => {
+const Trams = () => {
   const dispatch = useDispatch();
   let [fetch, setFetch] = useState(0);
   let [refresh, setRefresh] = useState(0);
@@ -48,14 +47,14 @@ const Trains = () => {
         <a href="/trains">
           {<img src={train} height="50px" className="logo" />}
         </a>
-        <h2 className="title">Southern Cross Train Departures</h2>
+        <h2 className="title">Nearby Tram Departures</h2>
         <a href="/trams">{<img src={tram} height="50px" className="logo" />}</a>
       </div>
       <header className="App-header">
-        {isLoading ? <Spinner /> : <TrainRoutes />}
+        {isLoading ? <Spinner /> : <TramRoutes />}
       </header>
     </div>
   );
 };
 
-export default Trains;
+export default Trams;

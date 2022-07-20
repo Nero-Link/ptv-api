@@ -34,6 +34,46 @@ code {
     monospace;
 }
 
+label {
+  font-size: 2rem;
+  font-weight: 700;
+  padding: 50px;
+}
+
+select {
+  width: 200px;
+  height: 50px;
+  background-color: grey;
+  color: white;
+  font-family: "Saira Extra Condensed";
+  font-size: 1rem;
+  border: 3px solid darkgrey;
+  border-radius: 25px;
+  margin: 0px 50px;
+}
+
+select::-webkit-scrollbar {
+  display: none;
+}
+
+select#routes {
+  height: 550px;
+}
+
+select#stops {
+  height: 200px;
+}
+
+option {
+  padding: 5px;
+}
+
+.select-config {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
 .selector-container {
   height: 100vh;
   display: flex;
@@ -115,6 +155,7 @@ code {
 .name.tram .swiper {
   font-size: 2.5rem !important;
   padding-left: 30px;
+  margin-right: -23px;
 }
 
 .emoji {

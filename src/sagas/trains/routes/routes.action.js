@@ -14,7 +14,7 @@ export const fetchRoutesFailed = (error) =>
 export const getRoutes = async (route) => {
   let routes = [];
   let counter = 0;
-  await route.route.forEach((currRoute) => {
+  await route.routes.forEach((currRoute) => {
     ptvClient
       .then((apis) => {
         return apis.Routes.Routes_RouteFromId({ route_id: currRoute });

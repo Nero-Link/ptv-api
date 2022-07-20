@@ -6,12 +6,12 @@ import {
   selectRoutesMap,
   selectRoutesIsLoading,
 } from "../../sagas/trams/routes/routes.selector";
-import { route } from "../../routes/trams";
+import { location } from "../../routes/config";
 
 const TramRoutes = () => {
   const routesMap = useSelector(selectRoutesMap);
   const isLoading = useSelector(selectRoutesIsLoading);
-  const [routes, setRoutes] = useState(routesMap[route]);
+  const [routes, setRoutes] = useState(routesMap[location]);
   let routesArray = [];
   const objectLoop = () => {
     if (routesArray.length === 0 && routesMap.length > 0)
@@ -20,7 +20,7 @@ const TramRoutes = () => {
   };
 
   useEffect(() => {
-    setRoutes(routesMap[route]);
+    setRoutes(routesMap[location]);
   }, [routes, routesMap, routesArray]);
 
   return (

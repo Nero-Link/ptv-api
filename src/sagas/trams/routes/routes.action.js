@@ -11,15 +11,15 @@ export const fetchRoutesSuccess = (routes) =>
 export const fetchRoutesFailed = (error) =>
   createAction(ROUTES_ACTION_TYPES.FETCH_ROUTES_FAILED, error);
 
-export const getRoutes = async (route) => {
+export const getRoutes = async (location) => {
   let stops = [];
   let counter = 0;
   await ptvClient
     .then((apis) => {
       return apis.Stops.Stops_StopsByGeolocation({
         route_types: 1,
-        latitude: route.route.latitude,
-        longitude: route.route.longitude,
+        latitude: location.location.latitude,
+        longitude: location.location.longitude,
         max_results: 5,
       });
     })
