@@ -94,7 +94,7 @@ const TramDepartures = ({ route }) => {
   }, [disruptions, disruptionsMap]);
 
   return (
-    <div className="departure-container" id={id}>
+    <div className="departure-container tram" id={id}>
       <span
         className={
           name.length + stop.length < 24 ? "name tram" : "name tram long"

@@ -118,19 +118,22 @@ option {
 }
 
 .departure-container {
-  /* background: #0072ce; */
-  background: #003cdc;
+  background: #0072ce;
+  /* background: #003cdc; */
   height: 150px;
   border-radius: 75px;
   align-items: center;
   display: flex;
   color: white;
-  /* font-family: "Network Sans Bold"; */
   font-family: "Open Sans";
   font-weight: 700;
   margin: 20px;
   padding: 0px 20px;
   width: 95vw;
+}
+
+.departure-container.tram {
+  background: #78be20 !important;
 }
 
 .name,
