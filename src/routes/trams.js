@@ -26,7 +26,7 @@ const Trams = () => {
   useEffect(() => {
     dispatch(fetchRoutesStart());
     dispatch(fetchDeparturesStart());
-    // dispatch(fetchDisruptionsStart());
+    dispatch(fetchDisruptionsStart());
     setFetch(fetch + 1);
   }, [dispatch, refresh]);
 

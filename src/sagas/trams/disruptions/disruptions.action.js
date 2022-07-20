@@ -11,41 +11,24 @@ export const fetchDisruptionsSuccess = (disruptions) =>
 export const fetchDisruptionsFailed = (error) =>
   createAction(DISRUPTIONS_ACTION_TYPES.FETCH_DISRUPTIONS_FAILED, error);
 
-export const getDisruptions = async (route) => {
+export const getDisruptions = async (stops) => {
   let disruptions = [];
-  await route.route.forEach((currRoute) => {
-    ptvClient
-      .then((apis) => {
-        return apis.Disruptions.Disruptions_GetDisruptionsByRoute({
-          route_id: `${currRoute}`,
-        });
-      })
-      .then((res) => {
-        let counter = 0;
-        res.body.disruptions.metro_train.forEach((disruption) => {
-          if (
-            !disruption.title.includes("Car") &&
-            !disruption.title.includes("car") &&
-            !disruption.title.includes("pedestrian") &&
-            !disruption.title.includes("Pedestrian") &&
-            !disruption.title.includes("elevator") &&
-            !disruption.title.includes("escalator")
-          ) {
-            counter++;
-            disruptions.push({
-              route_id: currRoute,
-              disruptions: {
-                id: disruption.disruption_id,
-                count: counter,
-                title: disruption.title,
-              },
-            });
-          }
-        });
-      })
-      .catch((error) => {
-        console.error(error);
+  await ptvClient
+    .then((apis) => {
+      return apis.Disruptions.Disruptions_GetAllDisruptions({
+        route_types: 1,
       });
-  });
+    })
+    .then((res) => {
+      res.body.disruptions.metro_tram.forEach((disruption) => {
+        disruptions.push({
+          title: disruption.title,
+          routes: disruption.routes,
+        });
+      });
+    })
+    .catch((error) => {
+      console.error(error);
+    });
   return disruptions;
 };

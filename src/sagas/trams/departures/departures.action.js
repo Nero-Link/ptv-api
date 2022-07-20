@@ -61,6 +61,5 @@ export const getDepartures = async (stops) => {
         console.error(error);
       });
   });
-  console.log(departures);
   return departures;
 };

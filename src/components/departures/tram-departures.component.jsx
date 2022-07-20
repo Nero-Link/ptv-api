@@ -20,7 +20,6 @@ const TramDepartures = ({ route }) => {
   const dispatch = useDispatch();
 
   const { id, name, stop, routes } = route;
-  console.log(routes);
   const departuresMap = useSelector(selectDeparturesMap);
   const departuresIsLoading = useSelector(selectDeparturesIsLoading);
   const [departures, setDepartures] = useState(departuresMap[route]);
@@ -33,7 +32,6 @@ const TramDepartures = ({ route }) => {
   const departuresLoop = () => {
     if (departuresArray.length === 0)
       departuresArray = Object.entries(departuresMap);
-    // console.log(departuresArray);
     return;
   };
 
@@ -70,6 +68,19 @@ const TramDepartures = ({ route }) => {
         let r2 = r1.substring(r1.length, r1.indexOf("-"));
         result = r2.substring(2);
       }
+    });
+    return result;
+  };
+
+  const checkDisruptions = (item) => {
+    let result = "";
+    routes.forEach((route) => {
+      item.routes.forEach((disrupt) => {
+        if (disrupt.route_id === route.route_id) {
+          // console.log(disrupt);
+          result = true;
+        }
+      });
     });
     return result;
   };
@@ -169,7 +180,7 @@ const TramDepartures = ({ route }) => {
           )}
         </span>
       </span>
-      <span className="disruptions">
+      <span className="disruptions tram">
         {disruptionsIsLoading ? (
           <Spinner />
         ) : (
@@ -186,15 +197,8 @@ const TramDepartures = ({ route }) => {
               {disruptionsLoop(disruptionsMap)}
               {disruptionsArray.length > 0
                 ? disruptionsArray.map((disruption) => {
-                    if (
-                      disruption[1].route_id === id &&
-                      disruption[1].disruptions.title
-                    ) {
-                      return (
-                        <SwiperSlide>
-                          {disruption[1].disruptions.title}
-                        </SwiperSlide>
-                      );
+                    if (checkDisruptions(disruption[1])) {
+                      return <SwiperSlide>{disruption[1].title}</SwiperSlide>;
                     }
                   })
                 : "No disruptions"}
