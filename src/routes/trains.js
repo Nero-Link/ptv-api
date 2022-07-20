@@ -7,7 +7,8 @@ import { fetchDisruptionsStart } from "../sagas/trains/disruptions/disruptions.a
 import TrainRoutes from "../components/routes/train-routes.component";
 import Spinner from "../components/spinner/spinner.component";
 
-import logo from "../images/train.svg";
+import train from "../images/train.svg";
+import tram from "../images/tram.svg";
 import "../App.css";
 
 export let route = [1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 14, 15, 16, 17];
@@ -28,7 +29,13 @@ const Trains = () => {
     setFetch(fetch + 1);
   }, [dispatch, refresh]);
 
-  useEffect(() => countdown(), []);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      isLoading = false;
+      setTimer((timer) => timer + 1);
+    }, tick);
+    return () => clearInterval(interval);
+  }, []);
 
   if (timer > timeout) {
     isLoading = true;
@@ -36,19 +43,14 @@ const Trains = () => {
     setTimer(0);
   }
 
-  function countdown() {
-    setInterval(function () {
-      isLoading = false;
-      setTimer(timer + 1);
-    }, tick);
-  }
-
   return (
     <div className="App">
       <div className="banner">
-        <a href="/">{<img src={logo} height="50px" className="logo" />}</a>
+        <a href="/trains">
+          {<img src={train} height="50px" className="logo" />}
+        </a>
         <h2 className="title">Southern Cross Train Departures</h2>
-        <a href="/">{<img src={logo} height="50px" className="logo" />}</a>
+        <a href="/trams">{<img src={tram} height="50px" className="logo" />}</a>
       </div>
       <header className="App-header">
         {isLoading ? <Spinner /> : <TrainRoutes />}
