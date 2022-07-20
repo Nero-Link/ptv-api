@@ -1,9 +1,6 @@
 {
   "swagger": "2.0",
-  "schemes": [
-    "http",
-    "https"
-  ],
+  "schemes": ["https"],
   "host": "timetableapi.ptv.vic.gov.au",
   "info": {
     "contact": {
@@ -18,9 +15,7 @@
     "termsOfService": "http://ptv.vic.gov.au/ptv-timetable-api/",
     "title": "PTV Timetable API - Version 3",
     "version": "v3",
-    "x-apisguru-categories": [
-      "transport"
-    ],
+    "x-apisguru-categories": ["transport"],
     "x-logo": {
       "backgroundColor": "#FFFFFF",
       "url": "https://api.apis.guru/v2/cache/logo/https_pbs.twimg.com_profile_images_544730682023346176_sAia9jJQ_400x400.jpeg"
@@ -40,11 +35,7 @@
     }
   },
   "consumes": [],
-  "produces": [
-    "application/json",
-    "text/json",
-    "text/html"
-  ],
+  "produces": ["application/json", "text/json", "text/html"],
   "paths": {
     "/v3/departures/route_type/{route_type}/stop/{stop_id}": {
       "get": {
@@ -53,13 +44,7 @@
         "parameters": [
           {
             "description": "Number identifying transport mode; values returned via RouteTypes API",
-            "enum": [
-              0,
-              1,
-              2,
-              3,
-              4
-            ],
+            "enum": [0, 1, 2, 3, 4],
             "format": "int32",
             "in": "path",
             "name": "route_type",
@@ -186,9 +171,7 @@
           }
         },
         "summary": "View departures for all routes from a stop",
-        "tags": [
-          "Departures"
-        ]
+        "tags": ["Departures"]
       }
     },
     "/v3/departures/route_type/{route_type}/stop/{stop_id}/route/{route_id}": {
@@ -198,13 +181,7 @@
         "parameters": [
           {
             "description": "Number identifying transport mode; values returned via RouteTypes API",
-            "enum": [
-              0,
-              1,
-              2,
-              3,
-              4
-            ],
+            "enum": [0, 1, 2, 3, 4],
             "format": "int32",
             "in": "path",
             "name": "route_type",
@@ -326,9 +303,7 @@
           }
         },
         "summary": "View departures for a specific route from a stop",
-        "tags": [
-          "Departures"
-        ]
+        "tags": ["Departures"]
       }
     },
     "/v3/directions/route/{route_id}": {
@@ -387,9 +362,7 @@
           }
         },
         "summary": "View directions that a route travels in",
-        "tags": [
-          "Directions"
-        ]
+        "tags": ["Directions"]
       }
     },
     "/v3/directions/{direction_id}": {
@@ -448,9 +421,7 @@
           }
         },
         "summary": "View all routes for a direction of travel",
-        "tags": [
-          "Directions"
-        ]
+        "tags": ["Directions"]
       }
     },
     "/v3/directions/{direction_id}/route_type/{route_type}": {
@@ -468,13 +439,7 @@
           },
           {
             "description": "Number identifying transport mode; values returned via RouteTypes API",
-            "enum": [
-              0,
-              1,
-              2,
-              3,
-              4
-            ],
+            "enum": [0, 1, 2, 3, 4],
             "format": "int32",
             "in": "path",
             "name": "route_type",
@@ -524,9 +489,7 @@
           }
         },
         "summary": "View all routes of a particular type for a direction of travel",
-        "tags": [
-          "Directions"
-        ]
+        "tags": ["Directions"]
       }
     },
     "/v3/disruptions": {
@@ -539,13 +502,7 @@
             "description": "Filter by route_type; values returned via RouteTypes API",
             "in": "query",
             "items": {
-              "enum": [
-                0,
-                1,
-                2,
-                3,
-                4
-              ],
+              "enum": [0, 1, 2, 3, 4],
               "format": "int32",
               "type": "integer"
             },
@@ -555,10 +512,7 @@
           },
           {
             "description": "Filter by status of disruption",
-            "enum": [
-              "current",
-              "planned"
-            ],
+            "enum": ["current", "planned"],
             "in": "query",
             "name": "disruption_status",
             "required": false,
@@ -607,9 +561,7 @@
           }
         },
         "summary": "View all disruptions for all route types",
-        "tags": [
-          "Disruptions"
-        ]
+        "tags": ["Disruptions"]
       }
     },
     "/v3/disruptions/route/{route_id}": {
@@ -627,10 +579,7 @@
           },
           {
             "description": "Filter by status of disruption",
-            "enum": [
-              "current",
-              "planned"
-            ],
+            "enum": ["current", "planned"],
             "in": "query",
             "name": "disruption_status",
             "required": false,
@@ -679,9 +628,7 @@
           }
         },
         "summary": "View all disruptions for a particular route",
-        "tags": [
-          "Disruptions"
-        ]
+        "tags": ["Disruptions"]
       }
     },
     "/v3/disruptions/{disruption_id}": {
@@ -740,9 +687,7 @@
           }
         },
         "summary": "View a specific disruption",
-        "tags": [
-          "Disruptions"
-        ]
+        "tags": ["Disruptions"]
       }
     },
     "/v3/pattern/run/{run_id}/route_type/{route_type}": {
@@ -760,13 +705,7 @@
           },
           {
             "description": "Number identifying transport mode; values returned via RouteTypes API",
-            "enum": [
-              0,
-              1,
-              2,
-              3,
-              4
-            ],
+            "enum": [0, 1, 2, 3, 4],
             "format": "int32",
             "in": "path",
             "name": "route_type",
@@ -832,9 +771,7 @@
           }
         },
         "summary": "View the stopping pattern for a specific trip/service run",
-        "tags": [
-          "Patterns"
-        ]
+        "tags": ["Patterns"]
       }
     },
     "/v3/route_types": {
@@ -885,9 +822,7 @@
           }
         },
         "summary": "View all route types and their names",
-        "tags": [
-          "RouteTypes"
-        ]
+        "tags": ["RouteTypes"]
       }
     },
     "/v3/routes": {
@@ -900,13 +835,7 @@
             "description": "Filter by route_type; values returned via RouteTypes API",
             "in": "query",
             "items": {
-              "enum": [
-                0,
-                1,
-                2,
-                3,
-                4
-              ],
+              "enum": [0, 1, 2, 3, 4],
               "format": "int32",
               "type": "integer"
             },
@@ -964,9 +893,7 @@
           }
         },
         "summary": "View route names and numbers for all routes",
-        "tags": [
-          "Routes"
-        ]
+        "tags": ["Routes"]
       }
     },
     "/v3/routes/{route_id}": {
@@ -1025,9 +952,7 @@
           }
         },
         "summary": "View route name and number for specific route ID",
-        "tags": [
-          "Routes"
-        ]
+        "tags": ["Routes"]
       }
     },
     "/v3/runs/route/{route_id}": {
@@ -1086,9 +1011,7 @@
           }
         },
         "summary": "View all trip/service runs for a specific route ID",
-        "tags": [
-          "Runs"
-        ]
+        "tags": ["Runs"]
       }
     },
     "/v3/runs/route/{route_id}/route_type/{route_type}": {
@@ -1106,13 +1029,7 @@
           },
           {
             "description": "Number identifying transport mode; values returned via RouteTypes API",
-            "enum": [
-              0,
-              1,
-              2,
-              3,
-              4
-            ],
+            "enum": [0, 1, 2, 3, 4],
             "format": "int32",
             "in": "path",
             "name": "route_type",
@@ -1162,9 +1079,7 @@
           }
         },
         "summary": "View all trip/service runs for a specific route ID and route type",
-        "tags": [
-          "Runs"
-        ]
+        "tags": ["Runs"]
       }
     },
     "/v3/runs/{run_id}": {
@@ -1223,9 +1138,7 @@
           }
         },
         "summary": "View all trip/service runs for a specific run ID",
-        "tags": [
-          "Runs"
-        ]
+        "tags": ["Runs"]
       }
     },
     "/v3/runs/{run_id}/route_type/{route_type}": {
@@ -1243,13 +1156,7 @@
           },
           {
             "description": "Number identifying transport mode; values returned via RouteTypes API",
-            "enum": [
-              0,
-              1,
-              2,
-              3,
-              4
-            ],
+            "enum": [0, 1, 2, 3, 4],
             "format": "int32",
             "in": "path",
             "name": "route_type",
@@ -1299,9 +1206,7 @@
           }
         },
         "summary": "View the trip/service run for a specific run ID and route type",
-        "tags": [
-          "Runs"
-        ]
+        "tags": ["Runs"]
       }
     },
     "/v3/search/{search_term}": {
@@ -1321,13 +1226,7 @@
             "description": "Filter by route_type; values returned via RouteTypes API (note: stops and routes are ordered by route_types specified)",
             "in": "query",
             "items": {
-              "enum": [
-                0,
-                1,
-                2,
-                3,
-                4
-              ],
+              "enum": [0, 1, 2, 3, 4],
               "format": "int32",
               "type": "integer"
             },
@@ -1416,9 +1315,7 @@
           }
         },
         "summary": "View stops, routes and myki ticket outlets that match the search term",
-        "tags": [
-          "Search"
-        ]
+        "tags": ["Search"]
       }
     },
     "/v3/stops/location/{latitude},{longitude}": {
@@ -1447,13 +1344,7 @@
             "description": "Filter by route_type; values returned via RouteTypes API",
             "in": "query",
             "items": {
-              "enum": [
-                0,
-                1,
-                2,
-                3,
-                4
-              ],
+              "enum": [0, 1, 2, 3, 4],
               "format": "int32",
               "type": "integer"
             },
@@ -1520,9 +1411,7 @@
           }
         },
         "summary": "View all stops near a specific location",
-        "tags": [
-          "Stops"
-        ]
+        "tags": ["Stops"]
       }
     },
     "/v3/stops/route/{route_id}/route_type/{route_type}": {
@@ -1540,13 +1429,7 @@
           },
           {
             "description": "Number identifying transport mode; values returned via RouteTypes API",
-            "enum": [
-              0,
-              1,
-              2,
-              3,
-              4
-            ],
+            "enum": [0, 1, 2, 3, 4],
             "format": "int32",
             "in": "path",
             "name": "route_type",
@@ -1596,9 +1479,7 @@
           }
         },
         "summary": "View all stops on a specific route",
-        "tags": [
-          "Stops"
-        ]
+        "tags": ["Stops"]
       }
     },
     "/v3/stops/{stop_id}/route_type/{route_type}": {
@@ -1616,13 +1497,7 @@
           },
           {
             "description": "Number identifying transport mode; values returned via RouteTypes API",
-            "enum": [
-              0,
-              1,
-              2,
-              3,
-              4
-            ],
+            "enum": [0, 1, 2, 3, 4],
             "format": "int32",
             "in": "path",
             "name": "route_type",
@@ -1714,9 +1589,7 @@
           }
         },
         "summary": "View facilities at a specific stop (Metro and V/Line stations only)",
-        "tags": [
-          "Stops"
-        ]
+        "tags": ["Stops"]
       }
     }
   },
@@ -1795,14 +1668,7 @@
         "expand": {
           "description": "List objects to be returned in full (i.e. expanded) - options include: all, stop, route, run, direction, disruption",
           "items": {
-            "enum": [
-              "All",
-              "Stop",
-              "Route",
-              "Run",
-              "Direction",
-              "Disruption"
-            ],
+            "enum": ["All", "Stop", "Route", "Run", "Direction", "Disruption"],
             "type": "string"
           },
           "type": "array"
@@ -1897,14 +1763,7 @@
         "expand": {
           "description": "List objects to be returned in full (i.e. expanded) - options include: all, stop, route, run, direction, disruption",
           "items": {
-            "enum": [
-              "All",
-              "Stop",
-              "Route",
-              "Run",
-              "Direction",
-              "Disruption"
-            ],
+            "enum": ["All", "Stop", "Route", "Run", "Direction", "Disruption"],
             "type": "string"
           },
           "type": "array"
@@ -2411,13 +2270,7 @@
         "route_types": {
           "description": "Filter by route_type; values returned via RouteTypes API (note: stops and routes are ordered by route_types specified)",
           "items": {
-            "enum": [
-              0,
-              1,
-              2,
-              3,
-              4
-            ],
+            "enum": [0, 1, 2, 3, 4],
             "format": "int32",
             "type": "integer"
           },
@@ -2460,10 +2313,7 @@
       "properties": {
         "health": {
           "description": "API system health status (0=offline, 1=online)",
-          "enum": [
-            0,
-            1
-          ],
+          "enum": [0, 1],
           "format": "int32",
           "type": "integer"
         },
