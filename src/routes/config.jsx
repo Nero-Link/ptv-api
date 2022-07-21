@@ -3,7 +3,7 @@ import tram from "../images/tram.svg";
 import "../App.css";
 import { useState } from "react";
 
-export const timeout = 12;
+export const timeout = 18;
 export const tick = 5000;
 
 export let location = { latitude: "-37.816774", longitude: "144.955539" };
@@ -106,7 +106,7 @@ const Config = () => {
                 setTimeout(e.target.value);
               }}
             >
-              <option value={"12"}>Every 1 minute</option>
+              <option value={"18"}>Every 1.5 minutes</option>
               <option value={"36"}>Every 3 minutes</option>
               <option value={"60"}>Every 5 minutes</option>
               <option value={"120"}>Every 10 minutes</option>
