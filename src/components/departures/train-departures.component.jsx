@@ -71,6 +71,7 @@ const TrainDepartures = ({ route }) => {
             <Swiper
               slidesPerView={1}
               loop={true}
+              speed={750}
               autoplay={{
                 delay: 5000,
                 disableOnInteraction: false,
@@ -151,8 +152,9 @@ const TrainDepartures = ({ route }) => {
               <Swiper
                 slidesPerView={1}
                 loop={true}
+                speed={750}
                 autoplay={{
-                  delay: 5250,
+                  delay: 5000,
                   disableOnInteraction: false,
                 }}
               >
@@ -234,8 +236,9 @@ const TrainDepartures = ({ route }) => {
             <Swiper
               slidesPerView={1}
               loop={true}
+              speed={750}
               autoplay={{
-                delay: 5500,
+                delay: 5000,
                 disableOnInteraction: false,
               }}
             >

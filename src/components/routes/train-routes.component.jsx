@@ -39,6 +39,7 @@ const TrainRoutes = () => {
             <Swiper
               slidesPerView={1}
               loop={true}
+              speed={750}
               autoplay={{
                 delay: 30000,
                 disableOnInteraction: false,
