@@ -26,6 +26,8 @@ export const getDisruptions = async (routes) => {
           if (
             !disruption.title.includes("Car") &&
             !disruption.title.includes("car") &&
+            !disruption.title.includes("Vehicle") &&
+            !disruption.title.includes("vehicle") &&
             !disruption.title.includes("pedestrian") &&
             !disruption.title.includes("Pedestrian") &&
             !disruption.title.includes("elevator") &&
