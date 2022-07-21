@@ -93,28 +93,29 @@ option {
   background: #003cdc;
   align-items: center;
   justify-content: space-evenly;
+  height: 17.5vh;
 }
 
 .logo {
   margin: 0px auto;
-  height: 50px;
-  width: 50px;
+  height: 100px;
+  width: 100px;
   margin-top: 5px;
 }
 
 .title {
   color: white;
   margin: 0px;
-  font-size: 2.5rem;
+  font-size: 5rem;
 }
 
 .routes-container {
   width: 100vw;
-  margin: 2.5vh;
+  margin: 0vh;
 }
 
 .tram-routes {
-  margin: 4vh !important;
+  margin: 2vh !important;
 }
 
 .departure-container {
