@@ -3,7 +3,7 @@ import tram from "../images/tram.svg";
 import "../App.css";
 import { useState } from "react";
 
-export const timeout = 60;
+export const timeout = 12;
 export const tick = 5000;
 
 export let location = { latitude: "-37.816774", longitude: "144.955539" };
@@ -101,7 +101,7 @@ const Config = () => {
             <br />
             <br />
             <select
-              defaultValue={"60"}
+              defaultValue={"12"}
               onChange={(e) => {
                 setTimeout(e.target.value);
               }}
