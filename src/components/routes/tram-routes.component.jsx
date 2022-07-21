@@ -24,7 +24,7 @@ const TramRoutes = () => {
   }, [routes, routesMap, routesArray]);
 
   return (
-    <div>
+    <div className="tram-container">
       {isLoading ? (
         <Spinner />
       ) : (

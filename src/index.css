@@ -111,11 +111,14 @@ option {
 
 .routes-container {
   width: 100vw;
+}
+
+.train-container {
   margin: -2vh;
 }
 
-.tram-routes {
-  margin: 0vh !important;
+.tram-container {
+  margin: -4vh;
 }
 
 .departure-container {

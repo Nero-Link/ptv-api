@@ -30,7 +30,7 @@ const TrainRoutes = () => {
   }, [route, routesMap, routesArray]);
 
   return (
-    <div>
+    <div className="train-container">
       {isLoading ? (
         <Spinner />
       ) : (
