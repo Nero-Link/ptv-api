@@ -1,4 +1,4 @@
-import { takeLatest, all, call, put } from "redux-saga/effects";
+import { takeLatest, all, call, put } from "typed-redux-saga/macro";
 import { ROUTES_ACTION_TYPES } from "./routes.types";
 import {
   fetchRoutesSuccess,
@@ -12,7 +12,7 @@ export function* fetchRoutesAsync() {
     const routeArray = yield call(getRoutes, { routes });
     yield put(fetchRoutesSuccess(routeArray));
   } catch (error) {
-    yield put(fetchRoutesFailed(error));
+    yield put(fetchRoutesFailed(error as Error));
   }
 }
 

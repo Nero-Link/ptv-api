@@ -7,6 +7,7 @@
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^13.5.0",
     "@types/node": "^18.0.3",
+    "@types/redux-logger": "^3.0.9",
     "crypto-js": "^4.1.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -21,8 +22,15 @@
     "styled-components": "^5.3.5",
     "swagger-client": "^3.8.15",
     "swiper": "^8.3.1",
+    "typed-redux-saga": "^1.5.0",
     "urijs": "^1.19.1",
     "web-vitals": "^2.1.4"
+  },
+  "devDependencies": {
+    "@types/node": "18.0.3",
+    "@types/react": "18.0.15",
+    "@types/react-dom": "18.0.6",
+    "typescript": "4.7.4"
   },
   "scripts": {
     "start": "react-scripts start",
