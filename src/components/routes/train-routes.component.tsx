@@ -23,7 +23,6 @@ const TrainRoutes = () => {
   const objectLoop = (array: Routes[]): any => {
     if (routesArray.length === 0 && routesMap.length > 0)
       routesArray = Object.entries(routesMap);
-    console.log(routesArray);
     return;
   };
 

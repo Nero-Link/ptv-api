@@ -1,15 +1,44 @@
-import { createAction } from "../../../utils/reducer.utils";
-import { DEPARTURES_ACTION_TYPES } from "./departures.types";
+import {
+  createAction,
+  Action,
+  ActionWithPayload,
+  withMatcher,
+} from "../../../utils/reducer.utils";
+import { DEPARTURES_ACTION_TYPES, Departures } from "./departures.types";
 import { ptvClient } from "../../../utils/api.utils";
 
-export const fetchDeparturesStart = () =>
-  createAction(DEPARTURES_ACTION_TYPES.FETCH_DEPARTURES_START);
+export type FetchDeparturesStart =
+  Action<DEPARTURES_ACTION_TYPES.FETCH_DEPARTURES_START>;
 
-export const fetchDeparturesSuccess = (departures) =>
-  createAction(DEPARTURES_ACTION_TYPES.FETCH_DEPARTURES_SUCCESS, departures);
+export type FetchDeparturesSuccess = ActionWithPayload<
+  DEPARTURES_ACTION_TYPES.FETCH_DEPARTURES_SUCCESS,
+  Departures[]
+>;
 
-export const fetchDeparturesFailed = (error) =>
-  createAction(DEPARTURES_ACTION_TYPES.FETCH_DEPARTURES_FAILED, error);
+export type FetchDeparturesFailed = ActionWithPayload<
+  DEPARTURES_ACTION_TYPES.FETCH_DEPARTURES_FAILED,
+  Error
+>;
+
+export type DeparturesAction =
+  | FetchDeparturesStart
+  | FetchDeparturesSuccess
+  | FetchDeparturesFailed;
+
+export const fetchDeparturesStart = withMatcher(
+  (): FetchDeparturesStart =>
+    createAction(DEPARTURES_ACTION_TYPES.FETCH_DEPARTURES_START)
+);
+
+export const fetchDeparturesSuccess = withMatcher(
+  (departures: Departures[]): FetchDeparturesSuccess =>
+    createAction(DEPARTURES_ACTION_TYPES.FETCH_DEPARTURES_SUCCESS, departures)
+);
+
+export const fetchDeparturesFailed = withMatcher(
+  (error: Error): FetchDeparturesFailed =>
+    createAction(DEPARTURES_ACTION_TYPES.FETCH_DEPARTURES_FAILED, error)
+);
 
 const timeConvert = (departTime) => {
   let suffix = "AM";

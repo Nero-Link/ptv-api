@@ -30,13 +30,13 @@ const TrainDepartures = ({ route }) => {
   const disruptionsIsLoading = useSelector(selectDisruptionsIsLoading);
   const [disruptions, setDisruptions] = useState(disruptionsMap[route]);
 
-  const departuresLoop = () => {
+  const departuresLoop = (array: Departures[]): any => {
     if (departuresArray.length === 0)
       departuresArray = Object.entries(departuresMap);
     return;
   };
 
-  const disruptionsLoop = () => {
+  const disruptionsLoop = (array: Disruptions[]): any => {
     if (disruptionsArray.length === 0)
       disruptionsArray = Object.entries(disruptionsMap);
     return;

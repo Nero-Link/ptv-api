@@ -1,6 +1,9 @@
 import { createSelector } from "reselect";
+import { RootState } from "../../store";
+import { DisruptionsState } from "./disruptions.reducer";
 
-const selectDisruptionsReducer = (state) => state.tramsDisruptions;
+const selectDisruptionsReducer = (state: RootState): DisruptionsState =>
+  state.trainsDisruptions;
 
 export const selectDisruptions = createSelector(
   [selectDisruptionsReducer],

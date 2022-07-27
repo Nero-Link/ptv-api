@@ -12,7 +12,7 @@ export function* fetchDisruptionsAsync() {
     const departureArray = yield call(getDisruptions, { stops });
     yield put(fetchDisruptionsSuccess(departureArray));
   } catch (error) {
-    yield put(fetchDisruptionsFailed(error));
+    yield put(fetchDisruptionsFailed(error as Error));
   }
 }
 

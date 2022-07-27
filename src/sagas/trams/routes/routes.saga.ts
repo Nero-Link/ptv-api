@@ -12,7 +12,7 @@ export function* fetchRoutesAsync() {
     const routeArray = yield call(getRoutes, { location });
     yield put(fetchRoutesSuccess(routeArray));
   } catch (error) {
-    yield put(fetchRoutesFailed(error));
+    yield put(fetchRoutesFailed(error as Error));
   }
 }
 

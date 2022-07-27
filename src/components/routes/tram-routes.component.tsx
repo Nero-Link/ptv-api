@@ -1,4 +1,5 @@
-import { React, useState, useEffect } from "react";
+import React from "react";
+import { useState, useEffect, Key } from "react";
 import { useSelector } from "react-redux";
 import Spinner from "../spinner/spinner.component";
 import TramDepartures from "../departures/tram-departures.component";
@@ -6,14 +7,17 @@ import {
   selectRoutesMap,
   selectRoutesIsLoading,
 } from "../../sagas/trams/routes/routes.selector";
+import { Routes } from "../../sagas/trains/routes/routes.types";
 import { location } from "../../routes/config";
+
+let routesArray: [string, Routes][];
 
 const TramRoutes = () => {
   const routesMap = useSelector(selectRoutesMap);
   const isLoading = useSelector(selectRoutesIsLoading);
   const [routes, setRoutes] = useState(routesMap[location]);
-  let routesArray = [];
-  const objectLoop = () => {
+
+  const objectLoop = (array: Routes[]): any => {
     if (routesArray.length === 0 && routesMap.length > 0)
       routesArray = Object.entries(routesMap);
     return;
@@ -32,7 +36,9 @@ const TramRoutes = () => {
           {objectLoop(routesMap)}
           {routesArray.length > 0 &&
             routesArray.map((route) => {
-              return <TramDepartures key={route[1].id} route={route[1]} />;
+              return (
+                <TramDepartures key={route[1].id as Key} route={route[1]} />
+              );
             })}
         </div>
       )}
