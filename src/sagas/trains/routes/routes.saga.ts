@@ -1,5 +1,5 @@
 import { takeLatest, all, call, put } from "typed-redux-saga/macro";
-import { ROUTES_ACTION_TYPES } from "./routes.types";
+import { Routes, ROUTES_ACTION_TYPES } from "./routes.types";
 import {
   fetchRoutesSuccess,
   fetchRoutesFailed,
@@ -7,7 +7,7 @@ import {
 } from "./routes.action";
 import { routes } from "../../../routes/config";
 
-export function* fetchRoutesAsync() {
+export function* fetchRoutesAsync(): any {
   try {
     const routeArray = yield call(getRoutes, { routes });
     yield put(fetchRoutesSuccess(routeArray));

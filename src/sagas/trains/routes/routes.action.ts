@@ -11,7 +11,7 @@ export type FetchRoutesStart = Action<ROUTES_ACTION_TYPES.FETCH_ROUTES_START>;
 
 export type FetchRoutesSuccess = ActionWithPayload<
   ROUTES_ACTION_TYPES.FETCH_ROUTES_SUCCESS,
-  Routes
+  Routes[]
 >;
 
 export type FetchRoutesFailed = ActionWithPayload<
@@ -38,10 +38,12 @@ export const fetchRoutesFailed = withMatcher(
     createAction(ROUTES_ACTION_TYPES.FETCH_ROUTES_FAILED, error)
 );
 
-export const getRoutes = async (route: Array<Number>): Promise<Routes[]> => {
+export const getRoutes = async (route: {
+  routes: Array<Number>;
+}): Promise<Routes[]> => {
   let routes: Array<Routes> = [];
   let counter = 0;
-  await route.routes.forEach((currRoute) => {
+  await route.routes.forEach((currRoute: Number) => {
     ptvClient
       .then((apis) => {
         return apis.Routes.Routes_RouteFromId({ route_id: currRoute });
@@ -59,5 +61,5 @@ export const getRoutes = async (route: Array<Number>): Promise<Routes[]> => {
         console.error(error);
       });
   });
-  return routes;
+  return routes as Array<Routes>;
 };

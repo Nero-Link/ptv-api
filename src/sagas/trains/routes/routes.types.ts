@@ -5,8 +5,8 @@ export enum ROUTES_ACTION_TYPES {
 }
 
 export type Routes = {
-  id: number;
-  count: number;
-  name: string;
-  service: string;
+  id: Number;
+  count: Number;
+  name: String;
+  service: String;
 };

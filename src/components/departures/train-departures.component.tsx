@@ -1,7 +1,7 @@
-import { React, useState, useEffect, Fragment } from "react";
+import React from "react";
+import { useState, useEffect, Fragment } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore, { Autoplay } from "swiper/core";
 import "swiper/css";
 import "swiper/css/autoplay";
 import Spinner from "../spinner/spinner.component";
@@ -13,8 +13,11 @@ import {
   selectDisruptionsMap,
   selectDisruptionsIsLoading,
 } from "../../sagas/trains/disruptions/disruptions.selector";
+import { Departures } from "../../sagas/trains/departures/departures.types";
+import { Disruptions } from "../../sagas/trains/disruptions/disruptions.types";
 
-SwiperCore.use([Autoplay]);
+let departuresArray: [string, Departures][];
+let disruptionsArray: [string, Disruptions][];
 
 const TrainDepartures = ({ route }) => {
   const dispatch = useDispatch();
@@ -26,8 +29,6 @@ const TrainDepartures = ({ route }) => {
   const disruptionsMap = useSelector(selectDisruptionsMap);
   const disruptionsIsLoading = useSelector(selectDisruptionsIsLoading);
   const [disruptions, setDisruptions] = useState(disruptionsMap[route]);
-  let departuresArray = [];
-  let disruptionsArray = [];
 
   const departuresLoop = () => {
     if (departuresArray.length === 0)
