@@ -1,6 +1,9 @@
 import { createSelector } from "reselect";
+import { RootState } from "../../store";
+import { DeparturesState } from "./departures.reducer";
 
-const selectDeparturesReducer = (state) => state.trainsDepartures;
+const selectDeparturesReducer = (state: RootState): DeparturesState =>
+  state.trainsDepartures;
 
 export const selectDepartures = createSelector(
   [selectDeparturesReducer],

@@ -1,15 +1,47 @@
-import { createAction } from "../../../utils/reducer.utils";
-import { DISRUPTIONS_ACTION_TYPES } from "./disruptions.types";
+import {
+  createAction,
+  Action,
+  ActionWithPayload,
+  withMatcher,
+} from "../../../utils/reducer.utils";
+import { DISRUPTIONS_ACTION_TYPES, Disruptions } from "./disruptions.types";
 import { ptvClient } from "../../../utils/api.utils";
 
-export const fetchDisruptionsStart = () =>
-  createAction(DISRUPTIONS_ACTION_TYPES.FETCH_DISRUPTIONS_START);
+export type FetchDisruptionsStart =
+  Action<DISRUPTIONS_ACTION_TYPES.FETCH_DISRUPTIONS_START>;
 
-export const fetchDisruptionsSuccess = (disruptions) =>
-  createAction(DISRUPTIONS_ACTION_TYPES.FETCH_DISRUPTIONS_SUCCESS, disruptions);
+export type FetchDisruptionsSuccess = ActionWithPayload<
+  DISRUPTIONS_ACTION_TYPES.FETCH_DISRUPTIONS_SUCCESS,
+  Disruptions[]
+>;
 
-export const fetchDisruptionsFailed = (error) =>
-  createAction(DISRUPTIONS_ACTION_TYPES.FETCH_DISRUPTIONS_FAILED, error);
+export type FetchDisruptionsFailed = ActionWithPayload<
+  DISRUPTIONS_ACTION_TYPES.FETCH_DISRUPTIONS_FAILED,
+  Error
+>;
+
+export type DisruptionsAction =
+  | FetchDisruptionsStart
+  | FetchDisruptionsSuccess
+  | FetchDisruptionsFailed;
+
+export const fetchDisruptionsStart = withMatcher(
+  (): FetchDisruptionsStart =>
+    createAction(DISRUPTIONS_ACTION_TYPES.FETCH_DISRUPTIONS_START)
+);
+
+export const fetchDisruptionsSuccess = withMatcher(
+  (disruptions: Disruptions[]): FetchDisruptionsSuccess =>
+    createAction(
+      DISRUPTIONS_ACTION_TYPES.FETCH_DISRUPTIONS_SUCCESS,
+      disruptions
+    )
+);
+
+export const fetchDisruptionsFailed = withMatcher(
+  (error: Error): FetchDisruptionsFailed =>
+    createAction(DISRUPTIONS_ACTION_TYPES.FETCH_DISRUPTIONS_FAILED, error)
+);
 
 export const getDisruptions = async (routes) => {
   let disruptions = [];

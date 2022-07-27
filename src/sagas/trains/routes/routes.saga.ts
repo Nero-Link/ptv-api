@@ -1,5 +1,5 @@
 import { takeLatest, all, call, put } from "typed-redux-saga/macro";
-import { Routes, ROUTES_ACTION_TYPES } from "./routes.types";
+import { ROUTES_ACTION_TYPES } from "./routes.types";
 import {
   fetchRoutesSuccess,
   fetchRoutesFailed,

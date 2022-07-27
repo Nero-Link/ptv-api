@@ -1,4 +1,16 @@
-import { DEPARTURES_ACTION_TYPES } from "./departures.types";
+import { AnyAction } from "redux";
+import { DEPARTURES_ACTION_TYPES, Departures } from "./departures.types";
+import {
+  fetchDeparturesStart,
+  fetchDeparturesSuccess,
+  fetchDeparturesFailed,
+} from "./departures.action";
+
+export type DeparturesState = {
+  readonly departures: Departures[];
+  readonly isLoading: boolean;
+  readonly error: Error | null;
+};
 
 export const DEPARTURES_INITIAL_STATE = {
   departures: [],
@@ -8,18 +20,16 @@ export const DEPARTURES_INITIAL_STATE = {
 
 export const trainsDeparturesReducer = (
   state = DEPARTURES_INITIAL_STATE,
-  action = {}
-) => {
-  const { type, payload } = action;
-
-  switch (type) {
-    case DEPARTURES_ACTION_TYPES.FETCH_DEPARTURES_START:
-      return { ...state, isLoading: true };
-    case DEPARTURES_ACTION_TYPES.FETCH_DEPARTURES_SUCCESS:
-      return { ...state, departures: payload, isLoading: false };
-    case DEPARTURES_ACTION_TYPES.FETCH_DEPARTURES_FAILED:
-      return { ...state, error: payload, isLoading: false };
-    default:
-      return state;
+  action: AnyAction
+): DeparturesState => {
+  if (fetchDeparturesStart.match(action)) {
+    return { ...state, isLoading: true };
   }
+  if (fetchDeparturesSuccess.match(action)) {
+    return { ...state, departures: action.payload, isLoading: false };
+  }
+  if (fetchDeparturesFailed.match(action)) {
+    return { ...state, error: action.payload, isLoading: false };
+  }
+  return state;
 };

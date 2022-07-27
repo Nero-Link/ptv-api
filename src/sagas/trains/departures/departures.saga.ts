@@ -12,7 +12,7 @@ export function* fetchDeparturesAsync() {
     const departureArray = yield call(getDepartures, { routes });
     yield put(fetchDeparturesSuccess(departureArray));
   } catch (error) {
-    yield put(fetchDeparturesFailed(error));
+    yield put(fetchDeparturesFailed(error as Error));
   }
 }
 
