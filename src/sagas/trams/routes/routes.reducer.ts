@@ -18,7 +18,7 @@ export const ROUTES_INITIAL_STATE = {
   error: null,
 };
 
-export const trainsRoutesReducer = (
+export const tramsRoutesReducer = (
   state = ROUTES_INITIAL_STATE,
   action: AnyAction
 ): RoutesState => {

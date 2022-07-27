@@ -18,7 +18,7 @@ export const DEPARTURES_INITIAL_STATE = {
   error: null,
 };
 
-export const trainsDeparturesReducer = (
+export const tramsDeparturesReducer = (
   state = DEPARTURES_INITIAL_STATE,
   action: AnyAction
 ): DeparturesState => {
