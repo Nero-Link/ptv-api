@@ -7,7 +7,7 @@ import {
 } from "./routes.action";
 import { location } from "../../../routes/config";
 
-export function* fetchRoutesAsync() {
+export function* fetchRoutesAsync(): any {
   try {
     const routeArray = yield call(getRoutes, { location });
     yield put(fetchRoutesSuccess(routeArray));

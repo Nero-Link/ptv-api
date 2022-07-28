@@ -7,7 +7,7 @@ import {
 } from "./disruptions.action";
 import { routes } from "../../../routes/config";
 
-export function* fetchDisruptionsAsync() {
+export function* fetchDisruptionsAsync(): any {
   try {
     const departureArray = yield call(getDisruptions, { routes });
     yield put(fetchDisruptionsSuccess(departureArray));

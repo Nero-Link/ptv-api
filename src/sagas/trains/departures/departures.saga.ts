@@ -7,7 +7,7 @@ import {
 } from "./departures.action";
 import { routes } from "../../../routes/config";
 
-export function* fetchDeparturesAsync() {
+export function* fetchDeparturesAsync(): any {
   try {
     const departureArray = yield call(getDepartures, { routes });
     yield put(fetchDeparturesSuccess(departureArray));
