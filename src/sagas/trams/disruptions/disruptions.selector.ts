@@ -3,7 +3,7 @@ import { RootState } from "../../store";
 import { DisruptionsState } from "./disruptions.reducer";
 
 const selectDisruptionsReducer = (state: RootState): DisruptionsState =>
-  state.trainsDisruptions;
+  state.tramsDisruptions;
 
 export const selectDisruptions = createSelector(
   [selectDisruptionsReducer],

@@ -1,7 +1,6 @@
 import { React, useState, useEffect, Fragment } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore, { Autoplay } from "swiper/core";
 import "swiper/css";
 import "swiper/css/autoplay";
 import Spinner from "../spinner/spinner.component";
@@ -13,8 +12,6 @@ import {
   selectDisruptionsMap,
   selectDisruptionsIsLoading,
 } from "../../sagas/trams/disruptions/disruptions.selector";
-
-SwiperCore.use([Autoplay]);
 
 const TramDepartures = ({ route }) => {
   const dispatch = useDispatch();
@@ -77,7 +74,6 @@ const TramDepartures = ({ route }) => {
     routes.forEach((route) => {
       item.routes.forEach((disrupt) => {
         if (disrupt.route_id === route.route_id) {
-          // console.log(disrupt);
           result = true;
         }
       });
@@ -97,11 +93,11 @@ const TramDepartures = ({ route }) => {
     <div className="departure-container tram" id={id}>
       <span
         className={
-          name.length + stop.length < 24 ? "name tram" : "name tram long"
+          name.length + stop.length < 23 ? "name tram" : "name tram long"
         }
       >
         #{stop}
-        {name.length + stop.length < 24 ? name : name.substring(0, 24)}
+        {name.length + stop.length < 23 ? name : name.substring(0, 23)}
         <Swiper
           slidesPerView={1}
           loop={true}

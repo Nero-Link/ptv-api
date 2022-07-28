@@ -3,7 +3,7 @@ import { RootState } from "../../store";
 import { DeparturesState } from "./departures.reducer";
 
 const selectDeparturesReducer = (state: RootState): DeparturesState =>
-  state.trainsDepartures;
+  state.tramsDepartures;
 
 export const selectDepartures = createSelector(
   [selectDeparturesReducer],
