@@ -59,7 +59,6 @@ export const getDisruptions = async (stops: {
     })
     .then((res) => {
       res.body.disruptions.metro_tram.forEach((disruption: DisruptionsRaw) => {
-        console.log(disruption);
         disruptions.push({
           title: disruption.title,
           routes: disruption.routes,
