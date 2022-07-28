@@ -47,7 +47,9 @@ export const fetchDisruptionsFailed = withMatcher(
     createAction(DISRUPTIONS_ACTION_TYPES.FETCH_DISRUPTIONS_FAILED, error)
 );
 
-export const getDisruptions = async (routes: { routes: Array<Number> }) => {
+export const getDisruptions = async (routes: {
+  routes: Array<Number>;
+}): Promise<Disruptions[]> => {
   let disruptions: Array<Disruptions> = [];
   await routes.routes.forEach((currRoute: Number) => {
     ptvClient

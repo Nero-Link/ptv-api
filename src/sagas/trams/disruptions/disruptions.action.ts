@@ -4,7 +4,11 @@ import {
   ActionWithPayload,
   withMatcher,
 } from "../../../utils/reducer.utils";
-import { DISRUPTIONS_ACTION_TYPES, Disruptions } from "./disruptions.types";
+import {
+  DISRUPTIONS_ACTION_TYPES,
+  Disruptions,
+  DisruptionsRaw,
+} from "./disruptions.types";
 import { ptvClient } from "../../../utils/api.utils";
 
 export type FetchDisruptionsStart =
@@ -43,8 +47,10 @@ export const fetchDisruptionsFailed = withMatcher(
     createAction(DISRUPTIONS_ACTION_TYPES.FETCH_DISRUPTIONS_FAILED, error)
 );
 
-export const getDisruptions = async (stops) => {
-  let disruptions = [];
+export const getDisruptions = async (stops: {
+  stops: Array<Number>;
+}): Promise<Disruptions[]> => {
+  let disruptions: Array<Disruptions> = [];
   await ptvClient
     .then((apis) => {
       return apis.Disruptions.Disruptions_GetAllDisruptions({
@@ -52,7 +58,8 @@ export const getDisruptions = async (stops) => {
       });
     })
     .then((res) => {
-      res.body.disruptions.metro_tram.forEach((disruption) => {
+      res.body.disruptions.metro_tram.forEach((disruption: DisruptionsRaw) => {
+        console.log(disruption);
         disruptions.push({
           title: disruption.title,
           routes: disruption.routes,
@@ -62,5 +69,5 @@ export const getDisruptions = async (stops) => {
     .catch((error) => {
       console.error(error);
     });
-  return disruptions;
+  return disruptions as Array<Disruptions>;
 };

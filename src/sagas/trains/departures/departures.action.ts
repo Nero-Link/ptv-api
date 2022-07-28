@@ -55,8 +55,9 @@ const timeConvert = (departTime: string) => {
   return hour + ":" + minute + suffix;
 };
 
-export const getDepartures = async (routes: { routes: Array<Number> }) => {
-  console.log(routes);
+export const getDepartures = async (routes: {
+  routes: Array<Number>;
+}): Promise<Departures[]> => {
   let departures: Array<Departures> = [];
   await routes.routes.forEach((currRoute: Number) => {
     ptvClient
@@ -101,6 +102,5 @@ export const getDepartures = async (routes: { routes: Array<Number> }) => {
         console.error(error);
       });
   });
-  console.log(departures);
   return departures as Array<Departures>;
 };

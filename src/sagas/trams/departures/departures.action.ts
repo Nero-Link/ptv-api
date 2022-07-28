@@ -4,7 +4,11 @@ import {
   ActionWithPayload,
   withMatcher,
 } from "../../../utils/reducer.utils";
-import { DEPARTURES_ACTION_TYPES, Departures } from "./departures.types";
+import {
+  DEPARTURES_ACTION_TYPES,
+  Departures,
+  DeparturesRaw,
+} from "./departures.types";
 import { ptvClient } from "../../../utils/api.utils";
 
 export type FetchDeparturesStart =
@@ -40,19 +44,21 @@ export const fetchDeparturesFailed = withMatcher(
     createAction(DEPARTURES_ACTION_TYPES.FETCH_DEPARTURES_FAILED, error)
 );
 
-const timeConvert = (departTime) => {
+const timeConvert = (departTime: string) => {
   let suffix = "AM";
   let hour = String(new Date(departTime).getHours()).padStart(2, "0");
   let minute = String(new Date(departTime).getMinutes()).padStart(2, "0");
-  if (hour > 12) {
+  if (Number(hour) > 12) {
     suffix = "PM";
     hour = String(new Date(departTime).getHours() - 12).padStart(2, "0");
   }
   return hour + ":" + minute + suffix;
 };
 
-export const getDepartures = async (stops) => {
-  let departures = [];
+export const getDepartures = async (stops: {
+  stops: Array<Number>;
+}): Promise<Departures[]> => {
+  let departures: Array<Departures> = [];
   await stops.stops.forEach((currStop) => {
     ptvClient
       .then((apis) => {
@@ -64,7 +70,7 @@ export const getDepartures = async (stops) => {
       })
       .then((res) => {
         let counter = 0;
-        res.body.departures.forEach((departure) => {
+        res.body.departures.forEach((departure: DeparturesRaw) => {
           let departTime;
           if (departure.estimated_departure_utc != null)
             departTime = departure.estimated_departure_utc;
@@ -78,7 +84,7 @@ export const getDepartures = async (stops) => {
               route_id: departure.route_id,
               departures: {
                 count: counter,
-                time: timeConvert(departTime),
+                time: timeConvert(String(departTime)),
                 fullTime: new Date(departTime).toLocaleString(),
                 stop_id: departure.stop_id,
               },
@@ -90,5 +96,5 @@ export const getDepartures = async (stops) => {
         console.error(error);
       });
   });
-  return departures;
+  return departures as Array<Departures>;
 };

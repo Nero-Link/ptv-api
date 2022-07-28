@@ -5,7 +5,26 @@ export enum DEPARTURES_ACTION_TYPES {
 }
 
 export type Departures = {
-  departures: [];
-  isLoading: boolean;
-  error: string;
+  route_id: Number;
+  departures: {
+    count: number;
+    time: string;
+    fullTime: string;
+    stop_id: number;
+  };
+};
+
+export type DeparturesRaw = {
+  at_platform: boolean;
+  departure_sequence: number;
+  direction_id: number;
+  disruption_ids: [number];
+  estimated_departure_utc: number;
+  flags: string;
+  platform_number: string;
+  route_id: number;
+  run_id: number;
+  run_ref: string;
+  scheduled_departure_utc: string;
+  stop_id: number;
 };

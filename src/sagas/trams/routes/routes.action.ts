@@ -4,14 +4,14 @@ import {
   ActionWithPayload,
   withMatcher,
 } from "../../../utils/reducer.utils";
-import { ROUTES_ACTION_TYPES, Routes } from "./routes.types";
+import { ROUTES_ACTION_TYPES, Stops, StopsRaw } from "./routes.types";
 import { ptvClient } from "../../../utils/api.utils";
 
 export type FetchRoutesStart = Action<ROUTES_ACTION_TYPES.FETCH_ROUTES_START>;
 
 export type FetchRoutesSuccess = ActionWithPayload<
   ROUTES_ACTION_TYPES.FETCH_ROUTES_SUCCESS,
-  Routes[]
+  Stops[]
 >;
 
 export type FetchRoutesFailed = ActionWithPayload<
@@ -29,7 +29,7 @@ export const fetchRoutesStart = withMatcher(
 );
 
 export const fetchRoutesSuccess = withMatcher(
-  (routes: Routes[]): FetchRoutesSuccess =>
+  (routes: Stops[]): FetchRoutesSuccess =>
     createAction(ROUTES_ACTION_TYPES.FETCH_ROUTES_SUCCESS, routes)
 );
 
@@ -38,8 +38,13 @@ export const fetchRoutesFailed = withMatcher(
     createAction(ROUTES_ACTION_TYPES.FETCH_ROUTES_FAILED, error)
 );
 
-export const getRoutes = async (location) => {
-  let stops = [];
+export const getRoutes = async (location: {
+  location: {
+    latitude: string;
+    longitude: string;
+  };
+}) => {
+  let stops: Array<Stops> = [];
   let counter = 0;
   await ptvClient
     .then((apis) => {
@@ -51,7 +56,7 @@ export const getRoutes = async (location) => {
       });
     })
     .then((res) => {
-      res.body.stops.forEach((stop) => {
+      res.body.stops.forEach((stop: StopsRaw) => {
         let stopName = stop.stop_name;
         let stopId = stop.stop_name;
         stopName = stopName.substring(0, stopName.indexOf(" #"));
