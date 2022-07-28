@@ -153,6 +153,11 @@ option {
   line-height: 175% !important;
 }
 
+.name.long {
+  font-size: 3rem !important;
+  line-height: 300% !important;
+}
+
 .name.tram {
   font-size: 3rem !important;
   line-height: 150% !important;

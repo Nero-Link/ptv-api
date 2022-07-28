@@ -59,7 +59,7 @@ const TrainDepartures = ({ route }) => {
   return (
     <div className="departure-container" id={id}>
       <span className="emoji">{emoji}</span>
-      <span className="name">{name}</span>
+      <span className={name.length < 12 ? "name" : "name long"}>{name}</span>
       <span className="departing">
         {departuresIsLoading ? (
           <Spinner />
