@@ -1,5 +1,5 @@
 import { AnyAction } from "redux";
-import { ROUTES_ACTION_TYPES, Routes } from "./routes.types";
+import { ROUTES_ACTION_TYPES, Stops } from "./routes.types";
 import {
   fetchRoutesStart,
   fetchRoutesSuccess,
@@ -7,7 +7,7 @@ import {
 } from "./routes.action";
 
 export type RoutesState = {
-  readonly routes: Routes[];
+  readonly routes: Stops[];
   readonly isLoading: boolean;
   readonly error: Error | null;
 };
