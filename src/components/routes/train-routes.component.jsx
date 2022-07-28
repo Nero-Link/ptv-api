@@ -1,7 +1,7 @@
-import React from "react";
-import { useState, useEffect, Fragment, Key } from "react";
+import { React, useState, useEffect, Fragment } from "react";
 import { useSelector } from "react-redux";
 import { Swiper, SwiperSlide } from "swiper/react";
+import SwiperCore, { Autoplay } from "swiper/core";
 import "swiper/css";
 import "swiper/css/autoplay";
 import Spinner from "../spinner/spinner.component";
@@ -10,17 +10,16 @@ import {
   selectRoutesMap,
   selectRoutesIsLoading,
 } from "../../sagas/trains/routes/routes.selector";
-import { Routes } from "../../sagas/trains/routes/routes.types";
 import { routes } from "../../routes/config";
 
-let routesArray: [string, Routes][];
+SwiperCore.use([Autoplay]);
 
 const TrainRoutes = () => {
   const routesMap = useSelector(selectRoutesMap);
   const isLoading = useSelector(selectRoutesIsLoading);
   const [route, setRoutes] = useState(routesMap[routes]);
-
-  const objectLoop = (array: Routes[]): any => {
+  let routesArray = [];
+  const objectLoop = () => {
     if (routesArray.length === 0 && routesMap.length > 0)
       routesArray = Object.entries(routesMap);
     return;
@@ -51,10 +50,7 @@ const TrainRoutes = () => {
                 {routesArray.length > 0 &&
                   routesArray.slice(0, 5).map((route) => {
                     return (
-                      <TrainDepartures
-                        key={route[1].id as Key}
-                        route={route[1]}
-                      />
+                      <TrainDepartures key={route[1].id} route={route[1]} />
                     );
                   })}
               </SwiperSlide>
@@ -63,10 +59,7 @@ const TrainRoutes = () => {
                 {routesArray.length > 0 &&
                   routesArray.slice(5, 10).map((route) => {
                     return (
-                      <TrainDepartures
-                        key={route[1].id as Key}
-                        route={route[1]}
-                      />
+                      <TrainDepartures key={route[1].id} route={route[1]} />
                     );
                   })}
               </SwiperSlide>
@@ -75,10 +68,7 @@ const TrainRoutes = () => {
                 {routesArray.length > 0 &&
                   routesArray.slice(11, 15).map((route) => {
                     return (
-                      <TrainDepartures
-                        key={route[1].id as Key}
-                        route={route[1]}
-                      />
+                      <TrainDepartures key={route[1].id} route={route[1]} />
                     );
                   })}
               </SwiperSlide>
