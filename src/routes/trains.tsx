@@ -8,9 +8,7 @@ import TrainRoutes from "../components/routes/train-routes.component";
 import Spinner from "../components/spinner/spinner.component";
 import { timeout, tick } from "./config";
 
-import train from "../images/train.svg";
-import tram from "../images/tram.svg";
-import "../App.css";
+const train = require("../../public/svg/train.svg");
 
 let isLoading = true;
 
@@ -44,7 +42,7 @@ const Trains = () => {
   return (
     <div className="App">
       <div className="banner">
-        <a href="/trains">{<img src={train} className="logo" />}</a>
+        <a href="/trains">{<img src={train.default.src} className="logo" />}</a>
         <h2 className="title">
           Trains From <strong>SOUTHERN CROSS STATION</strong>
         </h2>

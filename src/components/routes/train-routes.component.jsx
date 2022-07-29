@@ -1,7 +1,6 @@
 import { React, useState, useEffect, Fragment } from "react";
 import { useSelector } from "react-redux";
 import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore, { Autoplay } from "swiper/core";
 import "swiper/css";
 import "swiper/css/autoplay";
 import Spinner from "../spinner/spinner.component";
@@ -11,8 +10,6 @@ import {
   selectRoutesIsLoading,
 } from "../../sagas/trains/routes/routes.selector";
 import { routes } from "../../routes/config";
-
-SwiperCore.use([Autoplay]);
 
 const TrainRoutes = () => {
   const routesMap = useSelector(selectRoutesMap);

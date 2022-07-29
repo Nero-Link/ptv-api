@@ -1,7 +1,7 @@
 import { React, useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import Spinner from "../spinner/spinner.component";
-import TramDepartures from "../departures/tram-departures.component";
+import Spinner from "../../components/spinner/spinner.component";
+import TramDepartures from "../../components/departures/tram-departures.component";
 import {
   selectRoutesMap,
   selectRoutesIsLoading,

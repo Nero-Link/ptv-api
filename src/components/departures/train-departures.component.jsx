@@ -25,6 +25,9 @@ const TrainDepartures = ({ route }) => {
   const [disruptions, setDisruptions] = useState(disruptionsMap[route]);
   let departuresArray = [];
   let disruptionsArray = [];
+  let remaining = 0;
+  let hour = false;
+  let timerColour = "green";
 
   const departuresLoop = () => {
     if (departuresArray.length === 0)
@@ -38,6 +41,28 @@ const TrainDepartures = ({ route }) => {
     return;
   };
 
+  const compareTimes = (departure) => {
+    const currTime = new Date();
+    const departTime = departure[1].departures.fullTime;
+    const distance = departTime.getTime() - currTime.getTime();
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const hours = Math.floor(
+      (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+    );
+    if (minutes > 15) {
+      timerColour = "green";
+    } else if (minutes < 15 && minutes > 10) {
+      timerColour = "orange";
+    } else if (minutes <= 10) {
+      timerColour = "red";
+    }
+    if (currTime > departTime) return "Tomorrow";
+    else if (hours > 0) {
+      hour = true;
+      return hours;
+    } else if (currTime < departTime) return minutes;
+  };
+
   useEffect(() => {
     setDepartures(departuresMap[route]);
   }, [departures, departuresMap]);
@@ -46,9 +71,9 @@ const TrainDepartures = ({ route }) => {
     setDisruptions(disruptionsMap[route]);
   }, [disruptions, disruptionsMap]);
 
-  let colour = "green";
+  let colour = "white";
   if (service === "Good Service") {
-    colour = "green";
+    colour = "white";
   } else if (service === "Minor Delays") {
     colour = "yellow";
   } else if (service === "Major Delays") {
@@ -56,8 +81,9 @@ const TrainDepartures = ({ route }) => {
   } else if (service === "Planned Works") {
     colour = "orange";
   }
+
   return (
-    <div className="departure-container" id={id}>
+    <div className="departure-container" id={id} style={{ color: colour }}>
       <span className="name">{name}</span>
       <span className="departing">
         {departuresIsLoading ? (
@@ -68,108 +94,31 @@ const TrainDepartures = ({ route }) => {
             {departuresArray.length > 0 &&
               departuresArray.map((departure) => {
                 if (departure[1].route_id === id) {
-                  return `${departure[1].departures.time} | `;
+                  if (departure[1].departures.count === 3)
+                    return `${departure[1].departures.time}`;
+                  else return `${departure[1].departures.time} | `;
                 }
               })}
           </Fragment>
         )}
       </span>
-      <span className="remaining" style={{ color: colour }}>
-        <span className="remaining-number">4</span> mins
-      </span>
-      {/* <span className="disruptions">
-        {disruptionsIsLoading ? (
-          <Spinner />
-        ) : (
-          <Fragment>
-            <Swiper
-              slidesPerView={1}
-              loop={true}
-              speed={750}
-              autoplay={{
-                delay: 5000,
-                disableOnInteraction: false,
-              }}
-            >
-              <SwiperSlide>
-                {" "}
-                {disruptionsLoop(disruptionsMap)}
-                {disruptionsArray.length > 0
-                  ? disruptionsArray.map((disruption) => {
-                      if (
-                        disruption[1].route_id === id &&
-                        disruption[1].disruptions.count === 1 &&
-                        disruption[1].disruptions.title
-                      ) {
-                        return disruption[1].disruptions.title;
-                      }
-                    })
-                  : "No disruptions"}
-              </SwiperSlide>
-              <SwiperSlide>
-                {" "}
-                {disruptionsLoop(disruptionsMap)}
-                {disruptionsArray.length > 0
-                  ? disruptionsArray.map((disruption) => {
-                      if (
-                        disruption[1].route_id === id &&
-                        disruption[1].disruptions.count === 2 &&
-                        disruption[1].disruptions.title
-                      ) {
-                        return disruption[1].disruptions.title;
-                      }
-                    })
-                  : "No further disruptions"}
-              </SwiperSlide>
-              <SwiperSlide>
-                {" "}
-                {disruptionsLoop(disruptionsMap)}
-                {disruptionsArray.length > 0
-                  ? disruptionsArray.map((disruption) => {
-                      if (
-                        disruption[1].route_id === id &&
-                        disruption[1].disruptions.count === 3 &&
-                        disruption[1].disruptions.title
-                      ) {
-                        return disruption[1].disruptions.title;
-                      }
-                    })
-                  : "No further disruptions"}
-              </SwiperSlide>
-              <SwiperSlide>
-                {" "}
-                {disruptionsLoop(disruptionsMap)}
-                {disruptionsArray.length > 0
-                  ? disruptionsArray.map((disruption) => {
-                      if (
-                        disruption[1].route_id === id &&
-                        disruption[1].disruptions.count === 4 &&
-                        disruption[1].disruptions.title
-                      ) {
-                        return disruption[1].disruptions.title;
-                      }
-                    })
-                  : "No further disruptions"}
-              </SwiperSlide>
-              <SwiperSlide>
-                {" "}
-                {disruptionsLoop(disruptionsMap)}
-                {disruptionsArray.length > 0
-                  ? disruptionsArray.map((disruption) => {
-                      if (
-                        disruption[1].route_id === id &&
-                        disruption[1].disruptions.count === 5 &&
-                        disruption[1].disruptions.title
-                      ) {
-                        return disruption[1].disruptions.title;
-                      }
-                    })
-                  : "No further disruptions"}
-              </SwiperSlide>
-            </Swiper>
-          </Fragment>
-        )}
-      </span> */}
+      {departuresArray.length > 0 &&
+        departuresArray.map((departure) => {
+          if (
+            departure[1].route_id === id &&
+            departure[1].departures.count === 1
+          ) {
+            remaining = compareTimes(departure);
+            {
+              return (
+                <span className="remaining" style={{ color: timerColour }}>
+                  <span className="remaining-number">{remaining}</span>{" "}
+                  {hour ? "hrs" : "mins"}
+                </span>
+              );
+            }
+          }
+        })}
     </div>
   );
 };
