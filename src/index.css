@@ -1,28 +1,7 @@
-@font-face {
-  font-family: "Network Sans Regular";
-  src: local("Network Sans Regular"),
-    url(./fonts/NETWORKSANS-2019-REGULAR.TTF) format("truetype");
-}
-@font-face {
-  font-family: "Network Sans Medium";
-  src: local("Network Sans Medium"),
-    url(./fonts/NETWORKSANS-2019-MEDIUM.TTF) format("truetype");
-}
-@font-face {
-  font-family: "Network Sans Light";
-  src: local("Network Sans Light"),
-    url(./fonts/NETWORKSANS-2019-LIGHT.TTF) format("truetype");
-}
-@font-face {
-  font-family: "Network Sans Bold";
-  src: local("Network Sans Bold"),
-    url(./fonts/NETWORKSANS-2019-BOLD.TTF) format("truetype");
-}
-
 body {
   overflow: hidden;
   margin: 0;
-  font-family: "Saira Semi Condensed", "Network Sans Regular", -apple-system,
+  font-family: "Saira Semi Condensed", "Open Sans", -apple-system,
     BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell",
     "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -34,86 +13,31 @@ code {
     monospace;
 }
 
-label {
-  font-size: 2rem;
-  font-weight: 700;
-  padding: 50px;
-}
-
-select {
-  width: 200px;
-  height: 50px;
-  background-color: grey;
-  color: white;
-  font-family: "Saira Semi Condensed";
-  font-size: 1rem;
-  font-weight: 400;
-  border: 3px solid darkgrey;
-  border-radius: 25px;
-  margin: 0px 50px;
-}
-
-select::-webkit-scrollbar {
-  display: none;
-}
-
-select#routes {
-  height: 550px;
-}
-
-select#stops {
-  height: 200px;
-}
-
-option {
-  padding: 5px;
-}
-
-.select-config {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-}
-
-.selector-container {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.selector {
-  padding: 10vw;
-  font-size: 3rem;
-  font-weight: 700;
-  text-align: center;
-}
-
 .banner {
   display: flex;
-  background: #003cdc;
+  background: #131922;
   align-items: center;
-  justify-content: space-evenly;
-  height: 17.5vh;
+  justify-content: center;
+  height: 12.5vh;
+  padding-top: 25px;
+  margin-bottom: -25px;
 }
 
 .logo {
-  margin: 0px auto;
-  height: 100px;
-  width: 100px;
-  margin-top: 5px;
+  margin: 5px 25px 0px auto;
+  height: 75px;
+  width: 75px;
 }
 
 .title {
   color: white;
   margin: 0px;
-  font-size: 5rem;
+  font-size: 3rem;
   font-weight: 400;
 }
 
 .routes-container {
-  width: 100vw;
-  margin: 2.5vh;
+  width: 70vw;
 }
 
 .tram-routes {
@@ -121,18 +45,15 @@ option {
 }
 
 .departure-container {
-  background: #0072ce;
-  /* background: #003cdc; */
-  height: 150px;
+  background: #1e2735;
+  height: 90px;
   border-radius: 75px;
   align-items: center;
   display: flex;
   color: white;
-  font-family: "Open Sans";
-  font-weight: 700;
   margin: 20px;
-  padding: 0px 20px;
-  width: 95vw;
+  padding-left: 20px;
+  width: 65vw;
 }
 
 .departure-container.tram {
@@ -140,11 +61,8 @@ option {
 }
 
 .name,
-.service,
-.departing,
-.platform {
-  border-right: 3px solid white;
-  padding: 0px 20px;
+.departing {
+  padding: 0px 10px;
   height: 100%;
 }
 
@@ -155,7 +73,7 @@ option {
 
 .name.long {
   font-size: 3rem !important;
-  line-height: 300% !important;
+  line-height: 175% !important;
 }
 
 .name.tram {
@@ -173,30 +91,34 @@ option {
   font-size: 2.5rem;
 }
 
-.name,
-.departing {
-  line-height: 250%;
-  font-size: 3.5rem;
+.name {
+  line-height: 175%;
+  font-size: 3.25rem;
+  width: 32.5%;
+  text-align: left;
+  font-weight: 700;
 }
 
-.name {
-  width: 35%;
+.departing {
+  width: 62.5%;
+  line-height: 200%;
+  font-size: 2.85rem;
   text-align: left;
 }
 
-.departing {
+.remaining {
   width: 15%;
+  height: 100%;
+  background-color: white;
+  border-radius: 50px;
+  line-height: 200%;
+  font-size: 3rem;
+  padding: 0px 10px;
+  margin-right: -25px;
 }
 
-.platform {
-  width: 7.5%;
-  font-size: 1.5rem;
-  height: 150px;
-  line-height: 50px;
-}
-
-.number {
-  font-size: 3.5rem;
+.remaining-number {
+  font-weight: 700;
 }
 
 .disruptions {

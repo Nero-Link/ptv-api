@@ -48,7 +48,7 @@ const TrainRoutes = () => {
               <SwiperSlide>
                 {objectLoop(routesMap)}
                 {routesArray.length > 0 &&
-                  routesArray.slice(0, 5).map((route) => {
+                  routesArray.slice(0, 7).map((route) => {
                     return (
                       <TrainDepartures key={route[1].id} route={route[1]} />
                     );
@@ -57,16 +57,7 @@ const TrainRoutes = () => {
               <SwiperSlide>
                 {objectLoop(routesMap)}
                 {routesArray.length > 0 &&
-                  routesArray.slice(5, 10).map((route) => {
-                    return (
-                      <TrainDepartures key={route[1].id} route={route[1]} />
-                    );
-                  })}
-              </SwiperSlide>
-              <SwiperSlide>
-                {objectLoop(routesMap)}
-                {routesArray.length > 0 &&
-                  routesArray.slice(11, 15).map((route) => {
+                  routesArray.slice(7, 14).map((route) => {
                     return (
                       <TrainDepartures key={route[1].id} route={route[1]} />
                     );

@@ -44,11 +44,10 @@ const Trains = () => {
   return (
     <div className="App">
       <div className="banner">
-        <a href="/trains">
-          {<img src={train} height="50px" className="logo" />}
-        </a>
-        <h2 className="title">Southern Cross Train Departures</h2>
-        <a href="/trams">{<img src={tram} height="50px" className="logo" />}</a>
+        <a href="/trains">{<img src={train} className="logo" />}</a>
+        <h2 className="title">
+          Trains From <strong>SOUTHERN CROSS STATION</strong>
+        </h2>
       </div>
       <header className="App-header">
         {isLoading ? <Spinner /> : <TrainRoutes />}

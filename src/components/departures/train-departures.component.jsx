@@ -46,186 +46,38 @@ const TrainDepartures = ({ route }) => {
     setDisruptions(disruptionsMap[route]);
   }, [disruptions, disruptionsMap]);
 
-  let emoji = "🟢";
+  let colour = "green";
   if (service === "Good Service") {
-    emoji = "🟢";
+    colour = "green";
   } else if (service === "Minor Delays") {
-    emoji = "🟡";
+    colour = "yellow";
   } else if (service === "Major Delays") {
-    emoji = "🔴";
+    colour = "red";
   } else if (service === "Planned Works") {
-    emoji = "🟠";
+    colour = "orange";
   }
   return (
     <div className="departure-container" id={id}>
-      <span className="emoji">{emoji}</span>
-      <span className={name.length < 12 ? "name" : "name long"}>{name}</span>
+      <span className="name">{name}</span>
       <span className="departing">
         {departuresIsLoading ? (
           <Spinner />
         ) : (
           <Fragment>
-            <Swiper
-              slidesPerView={1}
-              loop={true}
-              speed={750}
-              autoplay={{
-                delay: 5000,
-                disableOnInteraction: false,
-              }}
-            >
-              <SwiperSlide>
-                {departuresLoop(departuresMap)}
-                {departuresArray.length > 0 &&
-                  departuresArray.map((departure) => {
-                    if (
-                      departure[1].route_id === id &&
-                      departure[1].departures.count === 1
-                    ) {
-                      return departure[1].departures.time;
-                    }
-                  })}
-              </SwiperSlide>
-              <SwiperSlide>
-                {departuresLoop(departuresMap)}
-                {departuresArray.length > 0 &&
-                  departuresArray.map((departure) => {
-                    if (
-                      departure[1].route_id === id &&
-                      departure[1].departures.count === 2
-                    ) {
-                      return departure[1].departures.time;
-                    }
-                  })}
-              </SwiperSlide>
-              <SwiperSlide>
-                {departuresLoop(departuresMap)}
-                {departuresArray.length > 0 &&
-                  departuresArray.map((departure) => {
-                    if (
-                      departure[1].route_id === id &&
-                      departure[1].departures.count === 3
-                    ) {
-                      return departure[1].departures.time;
-                    }
-                  })}
-              </SwiperSlide>
-              <SwiperSlide>
-                {departuresLoop(departuresMap)}
-                {departuresArray.length > 0 &&
-                  departuresArray.map((departure) => {
-                    if (
-                      departure[1].route_id === id &&
-                      departure[1].departures.count === 4
-                    ) {
-                      return departure[1].departures.time;
-                    }
-                  })}
-              </SwiperSlide>
-              <SwiperSlide>
-                {departuresLoop(departuresMap)}
-                {departuresArray.length > 0 &&
-                  departuresArray.map((departure) => {
-                    if (
-                      departure[1].route_id === id &&
-                      departure[1].departures.count === 5
-                    ) {
-                      return departure[1].departures.time;
-                    }
-                  })}
-              </SwiperSlide>
-            </Swiper>
+            {departuresLoop(departuresMap)}
+            {departuresArray.length > 0 &&
+              departuresArray.map((departure) => {
+                if (departure[1].route_id === id) {
+                  return `${departure[1].departures.time} | `;
+                }
+              })}
           </Fragment>
         )}
       </span>
-      <span className="platform">
-        Platform{" "}
-        <span className="number">
-          <br />
-          {departuresIsLoading ? (
-            <Spinner />
-          ) : (
-            <Fragment>
-              <Swiper
-                slidesPerView={1}
-                loop={true}
-                speed={750}
-                autoplay={{
-                  delay: 5000,
-                  disableOnInteraction: false,
-                }}
-              >
-                <SwiperSlide>
-                  {departuresLoop(departuresMap)}
-                  {departuresArray.length > 0 &&
-                    departuresArray.map((departure) => {
-                      if (
-                        departure[1].route_id === id &&
-                        departure[1].departures.count === 1 &&
-                        departure[1].departures.platform !== null
-                      ) {
-                        return departure[1].departures.platform;
-                      }
-                    })}
-                </SwiperSlide>
-                <SwiperSlide>
-                  {departuresLoop(departuresMap)}
-                  {departuresArray.length > 0 &&
-                    departuresArray.map((departure) => {
-                      if (
-                        departure[1].route_id === id &&
-                        departure[1].departures.count === 2 &&
-                        departure[1].departures.platform !== null
-                      ) {
-                        return departure[1].departures.platform;
-                      }
-                    })}
-                </SwiperSlide>
-                <SwiperSlide>
-                  {departuresLoop(departuresMap)}
-                  {departuresArray.length > 0 &&
-                    departuresArray.map((departure) => {
-                      if (
-                        departure[1].route_id === id &&
-                        departure[1].departures.count === 3 &&
-                        departure[1].departures.platform !== null
-                      ) {
-                        return departure[1].departures.platform;
-                      }
-                    })}
-                </SwiperSlide>
-                <SwiperSlide>
-                  {departuresLoop(departuresMap)}
-                  {departuresArray.length > 0 &&
-                    departuresArray.map((departure) => {
-                      if (
-                        departure[1].route_id === id &&
-                        departure[1].departures.count === 4 &&
-                        departure[1].departures.platform !== null
-                      ) {
-                        return departure[1].departures.platform;
-                      }
-                    })}
-                </SwiperSlide>
-                <SwiperSlide>
-                  {departuresLoop(departuresMap)}
-                  {departuresArray.length > 0 &&
-                    departuresArray.map((departure) => {
-                      if (
-                        departure[1].route_id === id &&
-                        departure[1].departures.count === 5 &&
-                        departure[1].departures.platform !== null
-                      ) {
-                        return departure[1].departures.platform;
-                      }
-                    })}
-                </SwiperSlide>
-              </Swiper>
-            </Fragment>
-          )}
-        </span>
+      <span className="remaining" style={{ color: colour }}>
+        <span className="remaining-number">4</span> mins
       </span>
-      <span className="disruptions">
+      {/* <span className="disruptions">
         {disruptionsIsLoading ? (
           <Spinner />
         ) : (
@@ -317,7 +169,7 @@ const TrainDepartures = ({ route }) => {
             </Swiper>
           </Fragment>
         )}
-      </span>
+      </span> */}
     </div>
   );
 };
