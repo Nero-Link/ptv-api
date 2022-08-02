@@ -8,7 +8,7 @@ import TramRoutes from "../components/routes/tram-routes.component";
 import Spinner from "../components/spinner/spinner.component";
 import { timeout, tick } from "./config";
 
-const tram = require("../../public/svg/tram.svg");
+import tram from "../images/tram.svg";
 
 let isLoading = true;
 
@@ -42,7 +42,7 @@ const Trams = () => {
   return (
     <div className="App">
       <div className="banner">
-        <a href="/trams">{<img src={tram.default.src} className="logo" />}</a>
+        <a href="/trams">{<img src={tram} className="logo" />}</a>
         <h2 className="title">
           Trams From The <strong>COLLAB HUB</strong>
         </h2>

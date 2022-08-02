@@ -9,7 +9,7 @@ export type Departures = {
   departures: {
     count: number;
     time: string;
-    fullTime: string;
+    fullTime: Date;
     stop_id: number;
   };
 };

@@ -13,7 +13,7 @@ import {
   selectDisruptionsIsLoading,
 } from "../../sagas/trams/disruptions/disruptions.selector";
 
-const TramDepartures = ({ route }) => {
+const TramDepartures = ({ route, page }) => {
   const dispatch = useDispatch();
 
   const { id, name, stop, routes } = route;
@@ -25,6 +25,17 @@ const TramDepartures = ({ route }) => {
   const [disruptions, setDisruptions] = useState(disruptionsMap[route]);
   let departuresArray = [];
   let disruptionsArray = [];
+  let remaining = 0;
+  let hour = false;
+  let timerColour = "green";
+  let routeCount = 0;
+  let departCount = 0;
+  let remainingCount = 0;
+
+  const getPage = () => {
+    if (page > routes.length - 1) page = routes.length - 1;
+    return page;
+  };
 
   const departuresLoop = () => {
     if (departuresArray.length === 0)
@@ -61,9 +72,7 @@ const TramDepartures = ({ route }) => {
     let result = "";
     routes.forEach((route) => {
       if (item.route_id === route.route_id && item.departures.stop_id === id) {
-        let r1 = route.route_name;
-        let r2 = r1.substring(r1.length, r1.indexOf("-"));
-        result = r2.substring(2);
+        result = route.route_name;
       }
     });
     return result;
@@ -79,6 +88,28 @@ const TramDepartures = ({ route }) => {
       });
     });
     return result;
+  };
+
+  const compareTimes = (departure) => {
+    const currTime = new Date();
+    const departTime = departure[1].departures.fullTime;
+    const distance = departTime.getTime() - currTime.getTime();
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const hours = Math.floor(
+      (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+    );
+    if (minutes > 10) {
+      timerColour = "green";
+    } else if (minutes < 10 && minutes > 5) {
+      timerColour = "orange";
+    } else if (minutes <= 5) {
+      timerColour = "red";
+    }
+    if (currTime > departTime) return "0";
+    else if (hours > 0) {
+      hour = true;
+      return hours;
+    } else if (currTime < departTime) return minutes;
   };
 
   useEffect(() => {
@@ -98,107 +129,79 @@ const TramDepartures = ({ route }) => {
       >
         #{stop}
         {name.length + stop.length < 23 ? name : name.substring(0, 23)}
-        <Swiper
-          slidesPerView={1}
-          loop={true}
-          speed={750}
-          autoplay={{
-            delay: 5000,
-            disableOnInteraction: false,
-          }}
-        >
-          {departuresLoop(departuresMap)}
-          {departuresArray.length > 0 &&
-            departuresArray.map((departure) => {
-              if (getRouteName(departure[1])) {
-                return <SwiperSlide>{getRouteName(departure[1])}</SwiperSlide>;
+        {departuresLoop(departuresMap)}
+        {departuresArray.length > 0 &&
+          departuresArray.map((departure) => {
+            if (routes[getPage()].route_id === departure[1].route_id) {
+              if (getRouteNumber(departure[1]) && getRouteName(departure[1])) {
+                routeCount++;
+                if (routeCount === 1)
+                  return (
+                    <Fragment>
+                      <br />
+                      {getRouteNumber(departure[1])}{" "}
+                      <span className="tram-route" key={routeCount}>
+                        {getRouteName(departure[1])}
+                      </span>
+                    </Fragment>
+                  );
               }
-            })}
-        </Swiper>
+            }
+          })}
       </span>
-      <span className="departing">
+      <span className="departing tram">
         {departuresIsLoading ? (
           <Spinner />
         ) : (
           <Fragment>
-            <Swiper
-              slidesPerView={1}
-              loop={true}
-              speed={750}
-              autoplay={{
-                delay: 5000,
-                disableOnInteraction: false,
-              }}
-            >
-              {departuresLoop(departuresMap)}
-              {departuresArray.length > 0 &&
-                departuresArray.map((departure) => {
+            {departuresLoop(departuresMap)}
+            {departuresArray.length > 0 &&
+              departuresArray.map((departure) => {
+                if (
+                  routes[getPage()].route_id === departure[1].route_id &&
+                  id === departure[1].departures.stop_id
+                ) {
+                  departCount++;
                   if (checkRoutes(departure[1])) {
-                    return (
-                      <SwiperSlide>{departure[1].departures.time}</SwiperSlide>
-                    );
+                    if (departCount === 3)
+                      return `${departure[1].departures.time}`;
+                    else if (departCount < 3)
+                      return `${departure[1].departures.time} | `;
                   }
-                })}
-            </Swiper>
+                }
+              })}
           </Fragment>
         )}
       </span>
-      <span className="platform">
-        Route{" "}
-        <span className="number">
-          <br />
-          {departuresIsLoading ? (
-            <Spinner />
-          ) : (
-            <Fragment>
-              <Swiper
-                slidesPerView={1}
-                loop={true}
-                speed={750}
-                autoplay={{
-                  delay: 5000,
-                  disableOnInteraction: false,
-                }}
-              >
-                {departuresLoop(departuresMap)}
-                {departuresArray.length > 0 &&
-                  departuresArray.map((departure) => {
-                    if (getRouteNumber(departure[1])) {
-                      return (
-                        <SwiperSlide>
-                          {getRouteNumber(departure[1])}
-                        </SwiperSlide>
-                      );
-                    }
-                  })}
-              </Swiper>
-            </Fragment>
-          )}
-        </span>
-      </span>
-      <span className="disruptions tram">
-        {disruptionsIsLoading ? (
+      <span className="remaining-container">
+        {departuresIsLoading ? (
           <Spinner />
         ) : (
           <Fragment>
-            <Swiper
-              slidesPerView={1}
-              loop={true}
-              speed={750}
-              autoplay={{
-                delay: 5000,
-                disableOnInteraction: false,
-              }}
-            >
-              {disruptionsLoop(disruptionsMap)}
-              {disruptionsArray.length > 0
-                ? disruptionsArray.map((disruption) => {
-                    if (checkDisruptions(disruption[1])) {
-                      return <SwiperSlide>{disruption[1].title}</SwiperSlide>;
-                    }
-                  })
-                : "No disruptions"}
-            </Swiper>
+            {departuresArray.length > 0 &&
+              departuresArray.map((departure) => {
+                if (
+                  routes[getPage()].route_id === departure[1].route_id &&
+                  id === departure[1].departures.stop_id
+                ) {
+                  remaining = compareTimes(departure);
+                  remainingCount++;
+                  {
+                    if (remainingCount === 1)
+                      return (
+                        <span
+                          className="remaining tram"
+                          style={{
+                            color: timerColour,
+                          }}
+                        >
+                          <span className="remaining-number">{remaining}</span>{" "}
+                          {hour ? "hrs" : "mins"}
+                        </span>
+                      );
+                  }
+                }
+              })}
           </Fragment>
         )}
       </span>

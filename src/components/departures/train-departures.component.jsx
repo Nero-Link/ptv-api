@@ -49,14 +49,14 @@ const TrainDepartures = ({ route }) => {
     const hours = Math.floor(
       (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
     );
-    if (minutes > 15) {
+    if (minutes > 15 || hours > 0) {
       timerColour = "green";
-    } else if (minutes < 15 && minutes > 10) {
+    } else if (minutes < 15 && minutes > 10 && hours < 1) {
       timerColour = "orange";
-    } else if (minutes <= 10) {
+    } else if (minutes <= 10 && hours < 1) {
       timerColour = "red";
     }
-    if (currTime > departTime) return "Tomorrow";
+    if (currTime > departTime) return "Tmrw";
     else if (hours > 0) {
       hour = true;
       return hours;
@@ -111,7 +111,11 @@ const TrainDepartures = ({ route }) => {
             remaining = compareTimes(departure);
             {
               return (
-                <span className="remaining" style={{ color: timerColour }}>
+                <span
+                  key={departure[1].departures.count}
+                  className="remaining"
+                  style={{ color: timerColour }}
+                >
                   <span className="remaining-number">{remaining}</span>{" "}
                   {hour ? "hrs" : "mins"}
                 </span>

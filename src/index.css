@@ -1,3 +1,23 @@
+:root {
+  background: #1e2735;
+}
+
+.App {
+  text-align: center;
+  width: 100%;
+}
+
+.App-header {
+  background-color: #131922;
+  min-height: 62.5vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: black;
+}
+
 body {
   overflow: hidden;
   margin: 0;
@@ -13,18 +33,37 @@ code {
     monospace;
 }
 
+.select-config,
+.selector-container {
+  display: flex;
+  justify-content: center;
+}
+
+.selector-container {
+  align-items: center;
+  height: 100vh;
+}
+
+.selector {
+  font-size: 3rem;
+  font-weight: 700;
+  padding: 10vw;
+  text-align: center;
+  color: white;
+}
+
 .banner {
   display: flex;
   background: #131922;
   align-items: center;
   justify-content: center;
   height: 12.5vh;
-  padding-top: 25px;
+  padding-top: 50px;
   margin-bottom: -25px;
 }
 
 .logo {
-  margin: 5px 25px 0px auto;
+  margin: 5px 25px 0px 0px;
   height: 75px;
   width: 75px;
 }
@@ -38,10 +77,11 @@ code {
 
 .routes-container {
   width: 70vw;
+  margin-top: 7.5vh;
 }
 
-.tram-routes {
-  margin: 4vh !important;
+.routes-container.tram-routes {
+  margin-top: 0vh !important;
 }
 
 .departure-container {
@@ -51,13 +91,14 @@ code {
   align-items: center;
   display: flex;
   color: white;
-  margin: 20px;
+  margin: 20px auto;
   padding-left: 20px;
-  width: 65vw;
+  width: 66vw;
 }
 
 .departure-container.tram {
-  background: #78be20 !important;
+  height: 100px !important;
+  width: 67vw !important;
 }
 
 .name,
@@ -67,8 +108,8 @@ code {
 }
 
 .name.tram.long {
-  font-size: 2.5rem !important;
-  line-height: 175% !important;
+  font-size: 2.2rem !important;
+  line-height: 140% !important;
 }
 
 .name.long {
@@ -77,8 +118,9 @@ code {
 }
 
 .name.tram {
-  font-size: 3rem !important;
-  line-height: 150% !important;
+  font-size: 2.5rem !important;
+  line-height: 120% !important;
+  width: 47.5% !important;
 }
 
 .name.tram .swiper {
@@ -87,46 +129,57 @@ code {
   margin-right: -23px;
 }
 
-.emoji {
-  font-size: 2.5rem;
-}
-
 .name {
   line-height: 175%;
-  font-size: 3.25rem;
-  width: 32.5%;
+  font-size: 3rem;
+  width: 34%;
   text-align: left;
   font-weight: 700;
+}
+
+.tram-route {
+  font-size: 1.25rem;
 }
 
 .departing {
   width: 62.5%;
-  line-height: 200%;
-  font-size: 2.85rem;
+  line-height: 205%;
+  font-size: 2.75rem;
   text-align: left;
 }
 
-.remaining {
-  width: 15%;
+.departing.tram {
+  width: 50% !important;
+  font-size: 2.25rem !important;
+  line-height: 275% !important;
+}
+
+.remaining,
+.remaining-container {
+  width: 16.5%;
   height: 100%;
   background-color: white;
   border-radius: 50px;
-  line-height: 200%;
-  font-size: 3rem;
+  line-height: 250%;
+  font-size: 2.25rem;
   padding: 0px 10px;
   margin-right: -25px;
 }
 
+.remaining-container,
+.remaining.tram {
+  width: 15% !important;
+  margin-right: -5px !important;
+  font-size: 2rem !important;
+  line-height: 310% !important;
+}
+
 .remaining-number {
   font-weight: 700;
+  font-size: 3rem;
 }
 
-.disruptions {
-  font-size: 1.5rem;
-  padding: 0px 20px;
-  width: 40%;
-}
-
-.disruptions.tram {
-  width: 32.5% !important;
+.tram .remaining-number {
+  font-weight: 700;
+  font-size: 2.75rem;
 }

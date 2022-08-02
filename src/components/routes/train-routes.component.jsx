@@ -35,36 +35,30 @@ const TrainRoutes = () => {
         <Spinner />
       ) : (
         <div className="routes-container">
-          <Fragment>
-            <Swiper
-              slidesPerView={1}
-              loop={true}
-              speed={750}
-              autoplay={{
-                delay: 30000,
-                disableOnInteraction: false,
-              }}
-            >
-              <SwiperSlide>
-                {objectLoop(routesMap)}
-                {routesArray.length > 0 &&
-                  routesArray.slice(0, 7).map((route) => {
-                    return (
-                      <TrainDepartures key={route[1].id} route={route[1]} />
-                    );
-                  })}
-              </SwiperSlide>
-              <SwiperSlide>
-                {objectLoop(routesMap)}
-                {routesArray.length > 0 &&
-                  routesArray.slice(7, 14).map((route) => {
-                    return (
-                      <TrainDepartures key={route[1].id} route={route[1]} />
-                    );
-                  })}
-              </SwiperSlide>
-            </Swiper>
-          </Fragment>
+          <Swiper
+            slidesPerView={1}
+            loop={true}
+            speed={750}
+            autoplay={{
+              delay: 30000,
+              disableOnInteraction: false,
+            }}
+          >
+            <SwiperSlide>
+              {objectLoop(routesMap)}
+              {routesArray.length > 0 &&
+                routesArray.slice(0, 8).map((route) => {
+                  return <TrainDepartures key={route[1].id} route={route[1]} />;
+                })}
+            </SwiperSlide>
+            <SwiperSlide>
+              {objectLoop(routesMap)}
+              {routesArray.length > 0 &&
+                routesArray.slice(8, 15).map((route) => {
+                  return <TrainDepartures key={route[1].id} route={route[1]} />;
+                })}
+            </SwiperSlide>
+          </Swiper>
         </div>
       )}
     </div>

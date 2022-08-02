@@ -87,7 +87,7 @@ export const getDepartures = async (routes: {
                 departures: {
                   count: counter,
                   time: timeConvert(String(departTime)),
-                  fullTime: new Date(departTime).toLocaleString(),
+                  fullTime: new Date(departTime),
                   platform: departure.platform_number,
                   disruptions: {
                     id: departure.disruption_ids,

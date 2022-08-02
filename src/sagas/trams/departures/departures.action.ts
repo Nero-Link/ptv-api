@@ -65,7 +65,7 @@ export const getDepartures = async (stops: {
         return apis.Departures.Departures_GetForStop({
           stop_id: currStop,
           route_type: 1,
-          max_results: 2,
+          max_results: 5,
         });
       })
       .then((res) => {
@@ -85,7 +85,7 @@ export const getDepartures = async (stops: {
               departures: {
                 count: counter,
                 time: timeConvert(String(departTime)),
-                fullTime: new Date(departTime).toLocaleString(),
+                fullTime: new Date(departTime),
                 stop_id: departure.stop_id,
               },
             });
